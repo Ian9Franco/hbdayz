@@ -1,0 +1,42 @@
+{
+  "Header": {
+    "title": "HBDayz"
+  },
+  "Index": {
+    "title": "Recordatorio de Cumpleaños"
+  },
+  "Calendar": {
+    "avatarAlt": "Avatar de {name}"
+  },
+  "BirthdayList": {
+    "upcoming": "Próximos",
+    "avatarAlt": "Avatar de {name}",
+    "age": "{age}a"
+  },
+  "BirthdayDetail": {
+    "age": "Edad",
+    "socialNetworks": "Redes Sociales",
+    "astralChart": "Carta Astral",
+    "astralChartDescription": "Ver tu carta astral personalizada y matriz de vida.",
+    "viewChart": "Ver Carta",
+    "personalityTraits": "Rasgos de Personalidad",
+    "creative": "Creativo",
+    "ambitious": "Ambicioso",
+    "empathetic": "Empático",
+    "adventurous": "Aventurero"
+  },
+  "months": {
+    "JAN": "ENE",
+    "FEB": "FEB",
+    "MAR": "MAR",
+    "APR": "ABR",
+    "MAY": "MAY",
+    "JUN": "JUN",
+    "JUL": "JUL",
+    "AUG": "AGO",
+    "SEP": "SEP",
+    "OCT": "OCT",
+    "NOV": "NOV",
+    "DEC": "DIC"
+  }
+}

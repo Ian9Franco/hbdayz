@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Recordatorio de Cumpleaños
 
-## Getting Started
+## Descripción
 
-First, run the development server:
+Recordatorio de Cumpleaños es una aplicación web moderna desarrollada con Next.js que te ayuda a mantener un registro de los cumpleaños de tus amigos y familiares. Con una interfaz intuitiva y atractiva, puedes alternar fácilmente entre una vista de lista y una vista de calendario.
 
-```bash
+## Características
+
+- Interfaz de usuario moderna y responsiva
+- Alternancia entre vista de lista y calendario
+- Soporte para múltiples idiomas (Español e Inglés)
+- Tema claro/oscuro
+- Animaciones suaves para una mejor experiencia de usuario
+
+## Tecnologías Utilizadas
+
+- [Next.js](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [next-intl](https://next-intl-docs.vercel.app/)
+- [Lucide React](https://lucide.dev/)
+
+## Requisitos Previos
+
+- Node.js (versión 14 o superior)
+- npm o yarn
+
+## Instalación
+
+1. Clona el repositorio:
+   ```
+   git clone https://github.com/tu-usuario/recordatorio-cumpleanos.git
+   ```
+
+2. Navega al directorio del proyecto:
+   ```
+   cd recordatorio-cumpleanos
+   ```
+
+3. Instala las dependencias:
+   ```
+   npm install
+   ```
+   o si usas yarn:
+   ```
+   yarn install
+   ```
+
+## Configuración
+
+1. Copia el archivo `.env.example` a `.env.local` y ajusta las variables de entorno según sea necesario.
+
+2. Asegúrate de que los archivos de traducción estén presentes en el directorio `messages/` para los idiomas que deseas soportar.
+
+## Ejecución
+
+Para ejecutar la aplicación en modo de desarrollo:
+
+```
 npm run dev
-# or
+```
+o si usas yarn:
+```
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+La aplicación estará disponible en `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Construcción y Despliegue
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Para construir la aplicación para producción:
 
-## Learn More
+```
+npm run build
+```
+o si usas yarn:
+```
+yarn build
+```
 
-To learn more about Next.js, take a look at the following resources:
+Luego, puedes iniciar el servidor de producción con:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+npm start
+```
+o si usas yarn:
+```
+yarn start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contribución
 
-## Deploy on Vercel
+Las contribuciones son bienvenidas. Por favor, abre un issue o realiza un pull request con tus sugerencias o mejoras.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Licencia
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.

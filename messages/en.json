@@ -1,0 +1,42 @@
+{
+  "Header": {
+    "title": "HBDayz"
+  },
+  "Index": {
+    "title": "Birthday Reminder"
+  },
+  "Calendar": {
+    "avatarAlt": "{name}'s avatar"
+  },
+  "BirthdayList": {
+    "upcoming": "Upcomin",
+    "avatarAlt": "{name}'s avatar",
+    "age": "{age}y"
+  },
+  "BirthdayDetail": {
+    "age": "Age",
+    "socialNetworks": "Social Networks",
+    "astralChart": "Astral Chart",
+    "astralChartDescription": "View your personalized astral chart and life matrix.",
+    "viewChart": "View Chart",
+    "personalityTraits": "Personality Traits",
+    "creative": "Creative",
+    "ambitious": "Ambitious",
+    "empathetic": "Empathetic",
+    "adventurous": "Adventurous"
+  },
+  "months": {
+    "JAN": "JAN",
+    "FEB": "FEB",
+    "MAR": "MAR",
+    "APR": "APR",
+    "MAY": "MAY",
+    "JUN": "JUN",
+    "JUL": "JUL",
+    "AUG": "AUG",
+    "SEP": "SEP",
+    "OCT": "OCT",
+    "NOV": "NOV",
+    "DEC": "DEC"
+  }
+}

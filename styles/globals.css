@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 60 20% 99%;
+    --foreground: 162 57% 16%;
+    --card: 60 33% 96%;
+    --card-foreground: 162 57% 16%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 162 57% 16%;
+    --primary: 162 57% 16%;
+    --primary-foreground: 60 20% 99%;
+    --secondary: 43 36% 77%;
+    --secondary-foreground: 162 57% 16%;
+    --muted: 60 10% 96%;
+    --muted-foreground: 162 57% 30%;
+    --accent: 145 63% 42%;
+    --accent-foreground: 60 20% 99%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 60 20% 99%;
+    --border: 162 57% 16%;
+    --input: 162 57% 16%;
+    --ring: 162 57% 16%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 162 57% 16%;
+    --foreground: 60 20% 99%;
+    --card: 162 54% 12%;
+    --card-foreground: 60 20% 99%;
+    --popover: 162 57% 16%;
+    --popover-foreground: 60 20% 99%;
+    --primary: 60 20% 99%;
+    --primary-foreground: 162 57% 16%;
+    --secondary: 43 36% 77%;
+    --secondary-foreground: 162 57% 16%;
+    --muted: 162 45% 22%;
+    --muted-foreground: 60 20% 99%;
+    --accent: 145 63% 49%;
+    --accent-foreground: 162 57% 16%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 60 20% 99%;
+    --border: 60 20% 99%;
+    --input: 60 20% 99%;
+    --ring: 60 20% 99%;
+  }
+}
+
+body {
+  @apply bg-background text-foreground;
+}
+
+@layer utilities {
+  .transition-opacity {
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .duration-300 {
+    transition-duration: 300ms;
+  }
+}
+
+/* You can add any additional custom styles here */
