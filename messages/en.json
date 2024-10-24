@@ -1,4 +1,5 @@
 {
+  
   "Header": {
     "title": "HBDayz"
   },
@@ -38,5 +39,11 @@
     "OCT": "OCT",
     "NOV": "NOV",
     "DEC": "DEC"
+  },
+  
+  "NotFound": {
+    "title": "404 - Página no encontrada",
+    "message": "Lo sentimos, la página que estás buscando no existe.",
+    "backHome": "Volver a la página principal"
   }
 }
