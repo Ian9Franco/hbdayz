@@ -8,7 +8,6 @@ import BirthdayList from './components/BirthdayList'
 import Calendar from './components/Calendar'
 import BirthdayDetail from './components/BirthdayDetail'
 
-// Interfaz para el objeto Birthday
 export interface Birthday {
   id: string
   name: string
@@ -18,7 +17,6 @@ export interface Birthday {
   age: number 
 }
 
-// Datos de ejemplo para los cumpleaños
 const birthdays: Birthday[] = [
   { id: '1', name: 'Leonel Ngoya', date: 'Feb 19', birthYear: 2003, gender: 'male', age: 20 },
   { id: '2', name: 'Xavier Vidal', date: 'Dec 23', birthYear: 2001, gender: 'male', age: 22 },
@@ -26,25 +24,15 @@ const birthdays: Birthday[] = [
   { id: '4', name: 'Gina Lemoine', date: 'May 29', birthYear: 2002, gender: 'female', age: 21 },
 ]
 
-// Función para generar parámetros estáticos
-export function generateStaticParams() {
-  return [{ locale: 'en' }, { locale: 'es' }]
-}
-
-export default function Component() {
-  // Estado para la vista actual (lista o calendario)
+export default function Home() {
   const [view, setView] = useState<'list' | 'calendar'>('list')
-  // Estado para el cumpleaños seleccionado
   const [selectedBirthday, setSelectedBirthday] = useState<Birthday | null>(null)
-  // Obtener las traducciones
   const t = useTranslations('Index')
 
-  // Función para manejar la selección de un cumpleaños
   const handleSelectBirthday = (birthday: Birthday) => {
     setSelectedBirthday(birthday)
   }
 
-  // Función para cerrar el detalle del cumpleaños
   const handleCloseBirthdayDetail = () => {
     setSelectedBirthday(null)
   }
