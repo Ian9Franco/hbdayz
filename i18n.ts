@@ -1,7 +1,12 @@
 import { getRequestConfig } from 'next-intl/server';
 
-// Configura la carga de mensajes para next-intl
-export default getRequestConfig(async ({ locale }) => ({
-  // Carga los mensajes para el idioma especificado
-  messages: (await import(`./messages/${locale}.json`)).default
-}));
+export default getRequestConfig(async (context) => {
+  const locale = context.locale || 'en';
+  try {
+    const messages = (await import(`./messages/${locale}.json`)).default;
+    return { messages };
+  } catch (error) {
+    console.error(`Error loading messages for locale: ${locale}`, error);
+    return { messages: {} };
+  }
+});
