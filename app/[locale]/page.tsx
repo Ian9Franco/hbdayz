@@ -26,6 +26,11 @@ const birthdays: Birthday[] = [
   { id: '4', name: 'Gina Lemoine', date: 'May 29', birthYear: 2002, gender: 'female', age: 21 },
 ]
 
+// Función para generar parámetros estáticos
+export function generateStaticParams() {
+  return [{ locale: 'en' }, { locale: 'es' }]
+}
+
 export default function Component() {
   // Estado para la vista actual (lista o calendario)
   const [view, setView] = useState<'list' | 'calendar'>('list')
