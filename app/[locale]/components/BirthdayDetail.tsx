@@ -2,10 +2,11 @@
 
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { X, Facebook, Twitter, Instagram, Globe } from 'lucide-react'
 import { Birthday } from '../page'
-import { useTranslations } from 'next-intl'
+import useSound from 'use-sound'
 
 type Step = 1 | 2 | 3
 

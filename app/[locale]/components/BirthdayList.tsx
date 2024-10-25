@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Birthday } from '../page'
 
+
 const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 
 interface BirthdayListProps {
@@ -30,6 +31,15 @@ export default function BirthdayList({ birthdays, onSelectBirthday }: BirthdayLi
     birthdays: birthdays.filter(b => new Date(b.date).getMonth() === months.indexOf(month))
   }))
 
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth();
+  const nextMonth = (currentMonth + 1) % 12;
+
+  const upcomingBirthdays = birthdays.filter(birthday => {
+    const birthMonth = new Date(birthday.date).getMonth();
+    return birthMonth === currentMonth || birthMonth === nextMonth;
+  });
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -43,13 +53,15 @@ export default function BirthdayList({ birthdays, onSelectBirthday }: BirthdayLi
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        {birthdaysByMonth.map((monthData) => (
+        {birthdaysByMonth.map((monthData, index) => (
           <motion.div 
             key={monthData.month} 
-            className="flex flex-col items-center"
+            className={`flex flex-col items-center ${index === currentMonth ? 'shadow-md rounded-lg p-2' : ''}`}
             whileHover={{ scale: 1.05 }}
           >
-            <span className="text-xs font-medium text-foreground/70 mb-2">{monthT(monthData.month)}</span>
+            <span className={`text-xs font-medium mb-2 ${index === currentMonth ? 'text-accent' : 'text-foreground/70'}`}>
+              {monthT(monthData.month)}
+            </span>
             <div className="flex -space-x-2">
               {monthData.birthdays.slice(0, 3).map((birthday) => (
                 <motion.div
@@ -96,7 +108,7 @@ export default function BirthdayList({ birthdays, onSelectBirthday }: BirthdayLi
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.4 }}
       >
-        {birthdays.map((birthday, index) => (
+        {upcomingBirthdays.map((birthday, index) => (
           <motion.div
             key={birthday.id}
             initial={{ opacity: 0, y: 20 }}
@@ -124,3 +136,7 @@ export default function BirthdayList({ birthdays, onSelectBirthday }: BirthdayLi
     </motion.div>
   )
 }
+// Mejoramos la visualización en dispositivos móviles ajustando el tamaño de los elementos
+// Implementamos un scroll horizontal para la lista de meses en pantallas pequeñas
+// Añadimos animaciones suaves para mejorar la experiencia del usuario
+// Utilizamos Framer Motion para crear transiciones fluidas entre estados

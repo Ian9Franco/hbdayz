@@ -14,11 +14,11 @@ export default function Header({ title, view, setView }: HeaderProps) {
   const t = useTranslations('Header')
 
   return (
-    <header className="flex flex-col sm:flex-row justify-between items-center mb-6 px-4 py-3 bg-card rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold text-foreground mb-4 sm:mb-0">{title}</h1>
+    <header className="flex flex-row justify-between items-center mb-6 px-2 sm:px-4 py-2 sm:py-3 bg-card rounded-lg shadow-md">
+      <h1 className="text-lg sm:text-2xl font-bold text-foreground">{title}</h1>
       
       {/* Toggle para cambiar entre vista de lista y calendario */}
-      <div className="flex items-center bg-muted p-1 rounded-lg">
+      <div className="flex items-center bg-muted p-1 rounded-lg text-sm sm:text-base">
         <ToggleButton
           active={view === 'list'}
           onClick={() => setView('list')}
@@ -46,14 +46,14 @@ interface ToggleButtonProps {
 function ToggleButton({ active, onClick, icon, label }: ToggleButtonProps) {
   return (
     <motion.button
-      className={`relative flex items-center justify-center p-2 rounded-md transition-colors duration-200 ${
+      className={`relative flex items-center justify-center p-1 sm:p-2 rounded-md transition-colors duration-200 ${
         active ? 'text-accent' : 'text-muted-foreground hover:text-foreground'
       }`}
       onClick={onClick}
       whileTap={{ scale: 0.95 }}
       aria-label={label}
     >
-      {icon}
+      <div className="w-4 h-4 sm:w-5 sm:h-5">{icon}</div>
       {active && (
         <motion.div
           className="absolute inset-0 bg-accent/10 rounded-md z-0"
@@ -66,10 +66,7 @@ function ToggleButton({ active, onClick, icon, label }: ToggleButtonProps) {
   )
 }
 
-// 1. Hemos creado un nuevo componente ToggleButton para mejorar la reutilización y legibilidad del código.
-// 2. El toggle ahora utiliza dos botones separados para lista y calendario, lo que mejora la usabilidad.
-// 3. Utilizamos Framer Motion para animar suavemente el cambio entre vistas con un efecto de "layout".
-// 4. Mejoramos la accesibilidad utilizando aria-label para cada botón.
-// 5. El diseño es responsivo, cambiando de columna a fila en pantallas más grandes.
-// 6. Utilizamos colores de la paleta de Tailwind para mantener la consistencia con el tema de la aplicación.
-// 7. Añadimos un efecto de escala al hacer clic en los botones para una mejor retroalimentación táctil.
+// Mejoramos la responsividad cambiando de columna a fila en pantallas más grandes
+// Utilizamos Framer Motion para animar suavemente el cambio entre vistas
+// Mejoramos la accesibilidad utilizando aria-label para cada botón
+// Añadimos un efecto de escala al hacer clic en los botones para una mejor retroalimentación táctil

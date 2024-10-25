@@ -45,5 +45,18 @@
     "title": "404 - Page Not Found",
     "message": "Sorry, the page you are looking for does not exist.",
     "backHome": "Back to Home"
+  },
+  "Login": {
+    "register": "Register",
+    "email": "Email",
+    "emailPlaceholder": "your@example.com",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "John Doe",
+    "birthDate": "Birth Date",
+    "password": "Password",
+    "passwordPlaceholder": "••••••••",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "••••••••",
+    "registerButton": "Register"
   }
 }

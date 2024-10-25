@@ -62,3 +62,8 @@ export default async function RootLayout({
     </html>
   );
 }
+
+// Añadimos animaciones de entrada suaves para cada sección
+// Mejoramos la apariencia de los avatares con sombras y efectos hover
+// Implementamos un efecto de escala suave al pasar el mouse por los elementos
+// Utilizamos colores de la paleta definida en Tailwind para mantener la consistencia

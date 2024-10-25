@@ -45,5 +45,19 @@
     "title": "404 - Página no encontrada",
     "message": "Lo sentimos, la página que estás buscando no existe.",
     "backHome": "Volver a la página principal"
+  },
+  "Login": {
+    "register": "Registro",
+    "email": "Correo Electrónico",
+    "emailPlaceholder": "tu@ejemplo.com",
+    "fullName": "Nombre Completo",
+    
+    "fullNamePlaceholder": "Juan Pérez",
+    "birthDate": "Fecha de Nacimiento",
+    "password": "Contraseña",
+    "passwordPlaceholder": "••••••••",
+    "confirmPassword": "Confirmar Contraseña",
+    "confirmPasswordPlaceholder": "••••••••",
+    "registerButton": "Registrarse"
   }
 }
