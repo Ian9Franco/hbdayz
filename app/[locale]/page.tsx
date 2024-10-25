@@ -26,7 +26,7 @@ const birthdays: Birthday[] = [
   { id: '4', name: 'Gina Lemoine', date: 'May 29', birthYear: 2002, gender: 'female', age: 21 },
 ]
 
-export default function Component() {
+export default function Page() {
   // Estado para la vista actual (lista o calendario)
   const [view, setView] = useState<'list' | 'calendar'>('list')
   // Estado para el cumpleaños seleccionado

@@ -1,6 +1,8 @@
 {
   "Header": {
-    "title": "HBDayz"
+    "title": "HBDayz",
+    "listView": "Vista de Lista",
+    "calendarView": "Vista de Calendario"
   },
   "Index": {
     "title": "Recordatorio de Cumpleaños"
@@ -39,7 +41,6 @@
     "NOV": "NOV",
     "DEC": "DIC"
   },
-  
   "NotFound": {
     "title": "404 - Página no encontrada",
     "message": "Lo sentimos, la página que estás buscando no existe.",

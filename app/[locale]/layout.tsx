@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google';
 import { ThemeProvider } from "./components/theme-provider";
 import ToggleMenu from './components/toggleMenu';
 import "../../styles/globals.css";
+import { setRequestLocale } from 'next-intl/server';
 
 // Configuración de la fuente Inter
 const inter = Inter({ subsets: ['latin'] })
@@ -28,12 +29,13 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  // Carga los mensajes de traducción
+  // Establecer el locale para la solicitud actual
+  setRequestLocale(locale);
+
   let messages;
   try {
     messages = (await import(`../../messages/${locale}.json`)).default;
   } catch (error) {
-    console.error(`Error al cargar los mensajes para el idioma ${locale}:`, error);
     notFound();
   }
 
@@ -60,8 +62,3 @@ export default async function RootLayout({
     </html>
   );
 }
-
-// Añadimos animaciones de entrada suaves para cada sección
-// Mejoramos la apariencia de los avatares con sombras y efectos hover
-// Implementamos un efecto de escala suave al pasar el mouse por los elementos
-// Utilizamos colores de la paleta definida en Tailwind para mantener la consistencia

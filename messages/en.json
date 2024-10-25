@@ -1,7 +1,8 @@
 {
-  
   "Header": {
-    "title": "HBDayz"
+    "title": "HBDayz",
+    "listView": "List View",
+    "calendarView": "Calendar View"
   },
   "Index": {
     "title": "Birthday Reminder"
@@ -40,10 +41,9 @@
     "NOV": "NOV",
     "DEC": "DEC"
   },
-  
   "NotFound": {
-    "title": "404 - Página no encontrada",
-    "message": "Lo sentimos, la página que estás buscando no existe.",
-    "backHome": "Volver a la página principal"
+    "title": "404 - Page Not Found",
+    "message": "Sorry, the page you are looking for does not exist.",
+    "backHome": "Back to Home"
   }
 }
