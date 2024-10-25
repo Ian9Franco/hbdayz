@@ -1,5 +1,4 @@
 import createMiddleware from 'next-intl/middleware';
-import { NextRequest } from 'next/server';
 
 // Crear el middleware de internacionalización
 export default createMiddleware({
