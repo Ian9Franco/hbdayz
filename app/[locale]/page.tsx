@@ -9,7 +9,7 @@ import BirthdayList from './components/BirthdayList'
 import Calendar from './components/Calendar'
 import BirthdayDetail from './components/BirthdayDetail'
 import Preloader from './components/Preloader'
-import Login from './components/login'
+import Login from './components/Login'
 import ToggleMenu from './components/toggleMenu'
 
 // Interfaz para el objeto Birthday
