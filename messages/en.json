@@ -2,21 +2,27 @@
   "Header": {
     "title": "HBDayz",
     "listView": "List View",
-    "calendarView": "Calendar View"
+    "calendarView": "Calendar View",
+    "witchesView": "Witches View"
   },
   "Index": {
     "title": "Birthday Reminder"
   },
   "Calendar": {
-    "avatarAlt": "{name}'s avatar"
+    "avatarAlt": "{name}'s avatar",
+    "birthdaysIn": "Birthdays in {month}"
   },
   "BirthdayList": {
-    "upcoming": "Upcomin",
+    "upcoming": "Upcoming",
     "avatarAlt": "{name}'s avatar",
-    "age": "{age}y"
+    "age": "{age}y",
+    "birthdaysIn": "Birthdays in {month}"
   },
   "BirthdayDetail": {
     "age": "Age",
+    "nextAge": "Next Age",
+    "sign": "Sign",
+    "element": "Element",
     "socialNetworks": "Social Networks",
     "astralChart": "Astral Chart",
     "astralChartDescription": "View your personalized astral chart and life matrix.",
@@ -25,7 +31,12 @@
     "creative": "Creative",
     "ambitious": "Ambitious",
     "empathetic": "Empathetic",
-    "adventurous": "Adventurous"
+    "adventurous": "Adventurous",
+    "birthTime": "Birth Time",
+    "birthPlace": "Birth Place",
+    "dayOfWeek": "Day of Week",
+    "lifePathNumber": "Life Path Number",
+    "compatibility": "Compatibility"
   },
   "months": {
     "JAN": "JAN",
@@ -47,16 +58,40 @@
     "backHome": "Back to Home"
   },
   "Login": {
+    "login": "Login",
     "register": "Register",
     "email": "Email",
     "emailPlaceholder": "your@example.com",
     "fullName": "Full Name",
     "fullNamePlaceholder": "John Doe",
     "birthDate": "Birth Date",
+    "birthTime": "Birth Time",
+    "birthPlace": "Birth Place",
+    "birthPlacePlaceholder": "City, Country",
     "password": "Password",
     "passwordPlaceholder": "••••••••",
     "confirmPassword": "Confirm Password",
     "confirmPasswordPlaceholder": "••••••••",
-    "registerButton": "Register"
+    "loginButton": "Login",
+    "registerButton": "Register",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "registerLink": "Sign up",
+    "loginLink": "Log in"
+  },
+  "WitchesSection": {
+    "witchesSection": "Witches Section",
+    "userList": "User List",
+    "astralChart": "Astral Chart",
+    "destinyMatrix": "Destiny Matrix",
+    "name": "Name",
+    "birthDate": "Birth Date",
+    "birthTime": "Birth Time",
+    "birthPlace": "Birth Place",
+    "zodiacSign": "Zodiac Sign",
+    "zodiacDescription": "Zodiac Description",
+    "element": "Element",
+    "dayOfWeekMeaning": "Day of Week Meaning",
+    "selectUser": "Select a user to view their astral chart and destiny matrix"
   }
 }

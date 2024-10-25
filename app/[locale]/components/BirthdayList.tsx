@@ -1,8 +1,9 @@
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Birthday } from '../page'
-
+import { useState, useRef, useEffect } from 'react'
+import { calculateCurrentAge, calculateNextAge } from '../utils/calculations'
 
 const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 
@@ -14,18 +15,10 @@ interface BirthdayListProps {
 export default function BirthdayList({ birthdays, onSelectBirthday }: BirthdayListProps) {
   const t = useTranslations('BirthdayList')
   const monthT = useTranslations('months')
+  const [selectedMonth, setSelectedMonth] = useState<string | null>(null)
+  const modalRef = useRef<HTMLDivElement>(null)
 
-  const calculateAge = (birthDate: string) => {
-    const today = new Date()
-    const birth = new Date(birthDate)
-    let age = today.getFullYear() - birth.getFullYear()
-    const m = today.getMonth() - birth.getMonth()
-    if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) {
-      age--
-    }
-    return age
-  }
-
+  // Organiza los cumpleaños por mes
   const birthdaysByMonth = months.map(month => ({
     month,
     birthdays: birthdays.filter(b => new Date(b.date).getMonth() === months.indexOf(month))
@@ -35,10 +28,31 @@ export default function BirthdayList({ birthdays, onSelectBirthday }: BirthdayLi
   const currentMonth = currentDate.getMonth();
   const nextMonth = (currentMonth + 1) % 12;
 
+  // Filtra los cumpleaños próximos (este mes y el siguiente)
   const upcomingBirthdays = birthdays.filter(birthday => {
     const birthMonth = new Date(birthday.date).getMonth();
     return birthMonth === currentMonth || birthMonth === nextMonth;
   });
+
+  // Efecto para cerrar el modal al hacer clic fuera de él
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        setSelectedMonth(null)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+
+  // Función para obtener el nombre completo del mes
+  const getFullMonthName = (monthAbbr: string) => {
+    const date = new Date(Date.parse(`${monthAbbr} 1, 2000`))
+    return date.toLocaleString('default', { month: 'long' })
+  }
 
   return (
     <motion.div
@@ -47,6 +61,7 @@ export default function BirthdayList({ birthdays, onSelectBirthday }: BirthdayLi
       transition={{ duration: 0.5 }}
       className="space-y-8"
     >
+      {/* Barra de meses */}
       <motion.div 
         className="flex overflow-x-auto space-x-4 py-4 scrollbar-hide"
         initial={{ x: -20, opacity: 0 }}
@@ -83,8 +98,9 @@ export default function BirthdayList({ birthdays, onSelectBirthday }: BirthdayLi
               ))}
               {monthData.birthdays.length > 3 && (
                 <motion.div 
-                  className="w-8 h-8 bg-secondary rounded-full flex items-center justify-center text-xs font-medium text-secondary-foreground shadow-md"
+                  className="w-8 h-8 bg-secondary rounded-full flex items-center justify-center text-xs font-medium text-secondary-foreground shadow-md cursor-pointer"
                   whileHover={{ scale: 1.1 }}
+                  onClick={() => setSelectedMonth(monthData.month)}
                 >
                   +{monthData.birthdays.length - 3}
                 </motion.div>
@@ -94,6 +110,7 @@ export default function BirthdayList({ birthdays, onSelectBirthday }: BirthdayLi
         ))}
       </motion.div>
       
+      {/* Sección de próximos cumpleaños */}
       <motion.h2 
         className="text-xl font-semibold text-foreground"
         initial={{ opacity: 0, y: 10 }}
@@ -129,14 +146,64 @@ export default function BirthdayList({ birthdays, onSelectBirthday }: BirthdayLi
               <h3 className="font-semibold text-foreground">{birthday.name}</h3>
               <p className="text-sm text-foreground/70">{birthday.date}</p>
             </div>
-            <div className="text-lg font-bold text-accent">{t('age', { age: calculateAge(birthday.date) })}</div>
+            {/* Mostramos la edad actual */}
+            <div className="text-lg font-bold text-accent">
+              {t('age', { age: calculateCurrentAge(`${birthday.date} ${birthday.birthYear}`) })}
+            </div>
           </motion.div>
         ))}
       </motion.div>
+
+      {/* Modal para mostrar todos los cumpleaños de un mes */}
+      <AnimatePresence>
+        {selectedMonth && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50"
+            onClick={() => setSelectedMonth(null)}
+          >
+            <motion.div
+              ref={modalRef}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-card p-6 rounded-lg shadow-lg max-w-sm w-full m-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h3 className="text-lg font-semibold mb-4">
+                {t('birthdaysIn', { month: getFullMonthName(selectedMonth) })}
+              </h3>
+              <div className="space-y-2">
+                {birthdaysByMonth.find(m => m.month === selectedMonth)?.birthdays.map((birthday) => (
+                  <motion.div
+                    key={birthday.id}
+                    className="flex items-center space-x-2 p-2 hover:bg-muted rounded-md transition-colors duration-200"
+                    onClick={() => {
+                      onSelectBirthday(birthday)
+                      setSelectedMonth(null)
+                    }}
+                  >
+                    <Image
+                      src={`/userlogo/${birthday.gender}.png`}
+                      alt={t('avatarAlt', { name: birthday.name })}
+                      width={32}
+                      height={32}
+                      className="rounded-full"
+                    />
+                    <span>{birthday.name}</span>
+                    {/* Mostramos la edad actual */}
+                    <span className="text-accent font-semibold">
+                      {t('age', { age: calculateCurrentAge(`${birthday.date} ${birthday.birthYear}`) })}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   )
 }
-// Mejoramos la visualización en dispositivos móviles ajustando el tamaño de los elementos
-// Implementamos un scroll horizontal para la lista de meses en pantallas pequeñas
-// Añadimos animaciones suaves para mejorar la experiencia del usuario
-// Utilizamos Framer Motion para crear transiciones fluidas entre estados

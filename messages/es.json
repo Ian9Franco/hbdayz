@@ -2,21 +2,27 @@
   "Header": {
     "title": "HBDayz",
     "listView": "Vista de Lista",
-    "calendarView": "Vista de Calendario"
+    "calendarView": "Vista de Calendario",
+    "witchesView": "Vista de Brujas"
   },
   "Index": {
     "title": "Recordatorio de Cumpleaños"
   },
   "Calendar": {
-    "avatarAlt": "Avatar de {name}"
+    "avatarAlt": "Avatar de {name}",
+    "birthdaysIn": "Cumplen en {month}"
   },
   "BirthdayList": {
     "upcoming": "Próximos",
     "avatarAlt": "Avatar de {name}",
-    "age": "{age}a"
+    "age": "{age}a",
+    "birthdaysIn": "Cumplen en {month}"
   },
   "BirthdayDetail": {
     "age": "Edad",
+    "nextAge": "Próxima Edad",
+    "sign": "Signo",
+    "element": "Elemento",
     "socialNetworks": "Redes Sociales",
     "astralChart": "Carta Astral",
     "astralChartDescription": "Ver tu carta astral personalizada y matriz de vida.",
@@ -25,7 +31,12 @@
     "creative": "Creativo",
     "ambitious": "Ambicioso",
     "empathetic": "Empático",
-    "adventurous": "Aventurero"
+    "adventurous": "Aventurero",
+    "birthTime": "Hora de Nacimiento",
+    "birthPlace": "Lugar de Nacimiento",
+    "dayOfWeek": "Día de la Semana",
+    "lifePathNumber": "Número de Camino de Vida",
+    "compatibility": "Compatibilidad"
   },
   "months": {
     "JAN": "ENE",
@@ -47,17 +58,40 @@
     "backHome": "Volver a la página principal"
   },
   "Login": {
+    "login": "Iniciar Sesión",
     "register": "Registro",
     "email": "Correo Electrónico",
     "emailPlaceholder": "tu@ejemplo.com",
     "fullName": "Nombre Completo",
-    
     "fullNamePlaceholder": "Juan Pérez",
     "birthDate": "Fecha de Nacimiento",
+    "birthTime": "Hora de Nacimiento",
+    "birthPlace": "Lugar de Nacimiento",
+    "birthPlacePlaceholder": "Ciudad, País",
     "password": "Contraseña",
     "passwordPlaceholder": "••••••••",
     "confirmPassword": "Confirmar Contraseña",
     "confirmPasswordPlaceholder": "••••••••",
-    "registerButton": "Registrarse"
+    "loginButton": "Iniciar Sesión",
+    "registerButton": "Registrarse",
+    "noAccount": "¿No tienes una cuenta?",
+    "haveAccount": "¿Ya tienes una cuenta?",
+    "registerLink": "Regístrate",
+    "loginLink": "Inicia sesión"
+  },
+  "WitchesSection": {
+    "witchesSection": "Sección de Brujas",
+    "userList": "Lista de Usuarios",
+    "astralChart": "Carta Astral",
+    "destinyMatrix": "Matriz del Destino",
+    "name": "Nombre",
+    "birthDate": "Fecha de Nacimiento",
+    "birthTime": "Hora de Nacimiento",
+    "birthPlace": "Lugar de Nacimiento",
+    "zodiacSign": "Signo Zodiacal",
+    "zodiacDescription": "Descripción del Signo",
+    "element": "Elemento",
+    "dayOfWeekMeaning": "Significado del Día de la Semana",
+    "selectUser": "Selecciona un usuario para ver su carta astral y matriz del destino"
   }
 }
