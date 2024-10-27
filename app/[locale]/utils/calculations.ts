@@ -1,3 +1,7 @@
+// Importamos las funciones necesarias de los archivos de astrología y numerología
+import { zodiacSigns, explainElement, dayOfWeekMeaning, calculateCompatibility as calculateAstrologicalCompatibility } from './astrology';
+import { calculateLifePathNumber as calculateNumerologyLifePathNumber, generateDestinyMatrix } from './numerology';
+
 // Función para calcular la edad actual
 export function calculateCurrentAge(birthDate: string): number {
   const today = new Date();
@@ -19,7 +23,7 @@ export function calculateNextAge(birthDate: string): number {
 
 // Función para calcular el signo zodiacal
 export function calculateZodiacSign(birthDate: string): { es: string; en: string } {
-  const [month, day] = birthDate.split(' ');
+  const [month, day, year] = birthDate.split(' ');
   const monthIndex = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].indexOf(month);
   const dayNum = parseInt(day);
 
@@ -53,14 +57,7 @@ export function calculateAstrologicalElement(zodiacSign: string): { es: string; 
 
 // Función para calcular la compatibilidad entre dos signos
 export function calculateCompatibility(sign1: string, sign2: string): string {
-  const compatiblePairs = [
-    ["Aries", "Leo"], ["Tauro", "Virgo"], ["Géminis", "Libra"], ["Cáncer", "Escorpio"],
-    ["Sagitario", "Acuario"], ["Capricornio", "Tauro"]
-  ];
-
-  return compatiblePairs.some(pair => pair.includes(sign1) && pair.includes(sign2))
-    ? "Alta compatibilidad"
-    : "Compatibilidad moderada";
+  return calculateAstrologicalCompatibility(sign1, sign2).message;
 }
 
 // Función para calcular el día de la semana de nacimiento
@@ -71,19 +68,40 @@ export function calculateDayOfWeek(birthDate: string): string {
   return days[date.getDay()];
 }
 
-// Función para calcular el número de vida (numerología)
+// Función para calcular el número de camino de vida
 export function calculateLifePathNumber(birthDate: string): number {
-  const digits = birthDate.replace(/\D/g, '').split('').map(Number);
-  let sum = digits.reduce((acc, num) => acc + num, 0);
-
-  while (sum >= 10) {
-    sum = sum.toString().split('').map(Number).reduce((acc, num) => acc + num, 0);
-  }
-  return sum;
+  // Se espera que birthDate tenga el formato 'Jan 12 2003'
+  const [month, day, year] = birthDate.split(' '); // La fecha se separa correctamente
+  const formattedBirthDate = `${year}-${month}-${day}`; // Asegúrate de que esto esté correcto
+  return calculateNumerologyLifePathNumber(formattedBirthDate);
 }
+
 
 // Función para calcular la diferencia horaria entre el lugar de nacimiento y el usuario
 export function calculateTimeDifference(birthPlace: string, userTimezone: string): string {
-  // Aquí puedes integrar una API externa para obtener los husos horarios si lo necesitas
+  // Aquí se podría integrar una API externa para obtener los husos horarios
   return `Diferencia horaria entre ${birthPlace} y ${userTimezone} pendiente de implementar.`;
 }
+
+// Exportamos las funciones y objetos importados para que estén disponibles desde este archivo
+export { zodiacSigns, explainElement, dayOfWeekMeaning, generateDestinyMatrix };
+
+// Ejemplo de uso para verificar el funcionamiento correcto
+function testCalculations() {
+  const birthDate = "Apr 15 1990";
+  const zodiacSign = calculateZodiacSign(birthDate);
+  console.log("Signo zodiacal:", zodiacSign);
+  
+  const element = calculateAstrologicalElement(zodiacSign.en);
+  
+  console.log("Elemento:", element);
+  
+  const lifePathNumber = calculateLifePathNumber(birthDate);
+  console.log("Número de camino de vida:", lifePathNumber);
+  
+  const dayOfWeek = calculateDayOfWeek(birthDate);
+  console.log("Día de la semana:", dayOfWeek);
+}
+
+// Descomenta la siguiente línea para ejecutar la prueba
+// testCalculations();

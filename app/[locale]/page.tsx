@@ -13,6 +13,7 @@ import Login from './components/Login'
 import ToggleMenu from './components/toggleMenu'
 import WitchesSection from './components/WitchesSection'
 
+
 // Interfaz para el objeto Birthday
 export interface Birthday {
   id: string
@@ -121,7 +122,7 @@ const birthdays: Birthday[] = [
   { 
     id: '10', 
     name: 'María Fernández', 
-    date: 'Oct 3', 
+    date: 'Dec 3', 
     birthYear: 1999, 
     gender: 'female', 
     age: 25, 
@@ -172,14 +173,18 @@ const birthdays: Birthday[] = [
 ]
 
 export default function Page({ params: { locale } }: { params: { locale: string } }) {
+  // Estados para manejar la vista, el cumpleaños seleccionado, carga y autenticación
   const [view, setView] = useState<'list' | 'calendar' | 'witches'>('list')
   const [selectedBirthday, setSelectedBirthday] = useState<Birthday | null>(null)
-  const t = useTranslations('Index')
   const [isLoading, setIsLoading] = useState(true)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  
+  // Hooks para traducciones y sonidos
+  const t = useTranslations('Index')
   const [playViewChange] = useSound('/sounds/view-change.mp3')
   const [playSelect] = useSound('/sounds/select.mp3')
 
+  // Efecto para simular carga inicial
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false)
@@ -187,6 +192,7 @@ export default function Page({ params: { locale } }: { params: { locale: string 
     return () => clearTimeout(timer)
   }, [])
 
+  // Manejadores de eventos
   const handleSelectBirthday = (birthday: Birthday) => {
     setSelectedBirthday(birthday)
     playSelect()
@@ -230,7 +236,7 @@ export default function Page({ params: { locale } }: { params: { locale: string 
               ) : view === 'calendar' ? (
                 <Calendar birthdays={birthdays} onSelectBirthday={handleSelectBirthday} />
               ) : (
-                <WitchesSection birthdays={birthdays} /> // Pass the birthdays prop here
+                <WitchesSection birthdays={birthdays} currentLocale={locale} />
               )}
             </motion.main>
           </AnimatePresence>

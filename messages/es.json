@@ -18,26 +18,6 @@
     "age": "{age}a",
     "birthdaysIn": "Cumplen en {month}"
   },
-  "BirthdayDetail": {
-    "age": "Edad",
-    "nextAge": "Próxima Edad",
-    "sign": "Signo",
-    "element": "Elemento",
-    "socialNetworks": "Redes Sociales",
-    "astralChart": "Carta Astral",
-    "astralChartDescription": "Ver tu carta astral personalizada y matriz de vida.",
-    "viewChart": "Ver Carta",
-    "personalityTraits": "Rasgos de Personalidad",
-    "creative": "Creativo",
-    "ambitious": "Ambicioso",
-    "empathetic": "Empático",
-    "adventurous": "Aventurero",
-    "birthTime": "Hora de Nacimiento",
-    "birthPlace": "Lugar de Nacimiento",
-    "dayOfWeek": "Día de la Semana",
-    "lifePathNumber": "Número de Camino de Vida",
-    "compatibility": "Compatibilidad"
-  },
   "months": {
     "JAN": "ENE",
     "FEB": "FEB",
@@ -79,6 +59,26 @@
     "registerLink": "Regístrate",
     "loginLink": "Inicia sesión"
   },
+  "BirthdayDetail": {
+    "age": "Edad",
+    "nextAge": "Próxima Edad",
+    "sign": "Signo",
+    "element": "Elemento",
+    "socialNetworks": "Redes Sociales",
+    "astralChart": "Carta Astral",
+    "astralChartDescription": "Ver tu carta astral personalizada y matriz de vida.",
+    "viewChart": "Ver Carta",
+    "personalityTraits": "Rasgos de Personalidad",
+    "creative": "Creativo",
+    "ambitious": "Ambicioso",
+    "empathetic": "Empático",
+    "adventurous": "Aventurero",
+    "birthTime": "Hora de Nacimiento",
+    "birthPlace": "Lugar de Nacimiento",
+    "dayOfWeek": "Día de la Semana",
+    "lifePathNumber": "Número de Camino de Vida",
+    "compatibility": "Compatibilidad"
+  },
   "WitchesSection": {
     "witchesSection": "Sección de Brujas",
     "userList": "Lista de Usuarios",
@@ -89,9 +89,30 @@
     "birthTime": "Hora de Nacimiento",
     "birthPlace": "Lugar de Nacimiento",
     "zodiacSign": "Signo Zodiacal",
-    "zodiacDescription": "Descripción del Signo",
+    "zodiacDescription": "Descripción del Signo Zodiacal",
     "element": "Elemento",
-    "dayOfWeekMeaning": "Significado del Día de la Semana",
-    "selectUser": "Selecciona un usuario para ver su carta astral y matriz del destino"
+    "dayOfWeek": "Día de la Semana",
+    "dayOfWeekMeaning": {
+      "Domingo": "Regido por el Sol. Un día para el crecimiento personal y la autoexpresión.",
+      "Lunes": "Regido por la Luna. Un día para nutrir, emociones y reflexión.",
+      "Martes": "Regido por Marte. Un día para la acción, el coraje y la actividad física.",
+      "Miércoles": "Regido por Mercurio. Un día para la comunicación, el aprendizaje y los viajes.",
+      "Jueves": "Regido por Júpiter. Un día para la expansión, la suerte y la abundancia.",
+      "Viernes": "Regido por Venus. Un día para el amor, la belleza y las relaciones.",
+      "Sábado": "Regido por Saturno. Un día para la disciplina, la responsabilidad y la estructura."
+    },
+       
+    "elementDescription": {
+      "Fuego": "Los signos de fuego son apasionados, enérgicos y buscan la acción.",
+      "Tierra": "Los signos de tierra son prácticos, estables y buscan la seguridad.",
+      "Aire": "Los signos de aire son intelectuales, comunicativos y buscan nuevas ideas.",
+      "Agua": "Los signos de agua son emocionales, intuitivos y buscan una conexión profunda."
+    },
+    "selectUser": "Selecciona un usuario para ver su carta astral y matriz del destino",
+    "lifePathNumber": "Número del Camino de Vida",
+    "soulNumber": "Número del Alma",
+    "personalityNumber": "Número de Personalidad",
+    "descriptionNotAvailable": "Descripción no disponible"
+  
   }
 }

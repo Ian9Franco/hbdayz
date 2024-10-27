@@ -41,18 +41,12 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className={`antialiased ${inter.className}`}>
-        {/* Proveedor de temas para manejar el modo claro/oscuro */}
+      <body className="antialiased font-sans">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {/* Proveedor de internacionalización */}
           <NextIntlClientProvider locale={locale} messages={messages}>
-            {/* Contenedor principal con estilos de fondo y texto */}
             <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
-              {/* Contenedor del contenido principal */}
               <div className="container mx-auto px-4 py-8 max-w-3xl mt-8">
-                {/* Renderiza el contenido de la página */}
                 {children}
-                {/* Componente de menú de alternancia para idioma y tema */}
                 <ToggleMenu currentLocale={locale} />
               </div>
             </div>

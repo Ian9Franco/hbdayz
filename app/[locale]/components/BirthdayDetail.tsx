@@ -1,12 +1,12 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import { X, Facebook, Twitter, Instagram, Globe, Clock, MapPin } from 'lucide-react'
+import { X, Facebook, Twitter, Instagram, Globe, Clock, MapPin, ChevronLeft, Users, Star, User } from 'lucide-react'
 import { Birthday } from '../page'
-import { calculateCurrentAge, calculateNextAge, calculateZodiacSign, calculateAstrologicalElement, calculateCompatibility, calculateDayOfWeek, calculateLifePathNumber } from '../utils/calculations'
+import { calculateCurrentAge, calculateZodiacSign, calculateAstrologicalElement, calculateCompatibility, calculateDayOfWeek, calculateLifePathNumber } from '../utils/calculations'
 
 type Step = 1 | 2 | 3
 
@@ -23,7 +23,6 @@ interface StepStyle {
   infoWidth: string
 }
 
-// Estilos para cada paso
 const stepStyles: Record<Step, StepStyle> = {
   1: {
     containerWidth: 400,
@@ -51,30 +50,34 @@ const stepStyles: Record<Step, StepStyle> = {
   },
   3: {
     containerWidth: 700,
-    containerHeight: 800,
+    containerHeight: 'auto',
     imageHeight: 330,
-    contentDirection: 'row',
+    contentDirection: 'column',
     contentAlign: 'flex-start',
-    contentJustify: 'space-between',
-    infoDirection: 'column',
+    contentJustify: 'flex-start',
+    infoDirection: 'row',
     infoAlign: 'flex-start',
     infoJustify: 'flex-start',
-    infoWidth: '50%',
+    infoWidth: '100%',
   },
 }
 
-// Animaciones para las tarjetas
 const cardVariants = {
   hidden: {
-    y: 20,
+    width: 0,
     opacity: 0,
   },
   visible: {
-    y: 0,
+    width: '300px',
     opacity: 1,
     transition: {
-      duration: 0.3,
-      ease: 'easeOut',
+      width: {
+        duration: 0.3,
+      },
+      opacity: {
+        duration: 0.3,
+        delay: 0.1,
+      },
     },
   },
 }
@@ -87,7 +90,16 @@ interface BirthdayDetailProps {
 export default function BirthdayDetail({ birthday, onClose }: BirthdayDetailProps) {
   const [step, setStep] = useState<Step>(1)
   const [isClosing, setIsClosing] = useState(false)
+  const [activeCard, setActiveCard] = useState<string | null>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
+  const [contentHeight, setContentHeight] = useState(0)
   const t = useTranslations('BirthdayDetail')
+
+  useEffect(() => {
+    if (contentRef.current) {
+      setContentHeight(contentRef.current.scrollHeight)
+    }
+  }, [step])
 
   const handleClick = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement
@@ -109,19 +121,19 @@ export default function BirthdayDetail({ birthday, onClose }: BirthdayDetailProp
     }, 300)
   }
 
+  const toggleCard = (cardName: string) => {
+    setActiveCard(activeCard === cardName ? null : cardName)
+  }
+
   const currentStyle = stepStyles[step]
 
-  // Cálculos para la información del cumpleaños
   const currentAge = calculateCurrentAge(`${birthday.date} ${birthday.birthYear}`)
-  const nextAge = calculateNextAge(`${birthday.date} ${birthday.birthYear}`)
   const zodiacSign = calculateZodiacSign(`${birthday.date} ${birthday.birthYear}`)
   const astrologicalElement = calculateAstrologicalElement(zodiacSign.en)
-  const compatibility = calculateCompatibility(zodiacSign.en, "Libra") // Ejemplo de compatibilidad con Libra
+  const compatibility = calculateCompatibility(zodiacSign.en, "Libra")
   const dayOfWeek = calculateDayOfWeek(`${birthday.date} ${birthday.birthYear}`)
   const lifePathNumber = calculateLifePathNumber(`${birthday.date} ${birthday.birthYear}`)
 
-
-  
   return (
     <AnimatePresence>
       {!isClosing && (
@@ -163,131 +175,111 @@ export default function BirthdayDetail({ birthday, onClose }: BirthdayDetailProp
               />
             </motion.div>
             <motion.div
-  className="flex items-start gap-10 px-5 pb-10 pt-10" // Cambié pb-8 a pb-10
-  style={{
-    flexDirection: currentStyle.contentDirection,
-    alignItems: currentStyle.contentAlign,
-    justifyContent: currentStyle.contentJustify,
-  }}
-  layout
->
-  <motion.h1 layout className="text-4xl font-bold text-foreground">
-    {birthday.name}
-  </motion.h1>
-  <motion.div
-    className="flex flex-col gap-4"
-    style={{
-      flexDirection: currentStyle.infoDirection,
-      justifyContent: currentStyle.infoJustify,
-      alignItems: currentStyle.infoAlign,
-      width: currentStyle.infoWidth,
-    }}
-  >
-    {/* Paso 1: Edad, nombre y signo */}
-    <motion.p layout className="text-foreground/80">
-      {birthday.date}
-    </motion.p>
-    <motion.p layout className="text-accent font-semibold">
-      {t('age')}: {currentAge}
-    </motion.p>
-    <motion.p layout className="text-secondary font-medium">
-      {t('sign')}: {zodiacSign.en}
-    </motion.p>
+              ref={contentRef}
+              className="flex flex-col gap-6 px-5 pb-10 pt-10 overflow-y-auto"
+              style={{ maxHeight: `calc(90vh - ${currentStyle.imageHeight}px - 48px)` }}
+              layout
+            >
+              <motion.h1 layout className="text-4xl font-bold text-foreground">
+                {birthday.name}
+              </motion.h1>
+              <motion.div
+                className="flex gap-4 flex-wrap"
+                style={{
+                  flexDirection: currentStyle.infoDirection,
+                  justifyContent: currentStyle.infoJustify,
+                  alignItems: currentStyle.infoAlign,
+                  width: currentStyle.infoWidth,
+                }}
+              >
+                <motion.p layout className="text-foreground/80">
+                  {birthday.date}
+                </motion.p>
+                <motion.p layout className="text-accent font-semibold">
+                  {t('age')}: {currentAge}
+                </motion.p>
+                <motion.p layout className="text-secondary font-medium">
+                  {t('sign')}: {zodiacSign.en}
+                </motion.p>
 
-    {/* Paso 2: Hora y lugar de nacimiento */}
-    {step >= 2 && (
-      <>
-        <motion.p layout className="flex items-center text-secondary">
-          <Clock className="mr-2" size={16} />
-          {t('birthTime')}: {birthday.birthTime}
-        </motion.p>
-        <motion.p layout className="flex items-center text-secondary">
-          <MapPin className="mr-2" size={16} />
-          {t('birthPlace')}: {birthday.birthPlace}
-        </motion.p>
-      </>
-    )}
+                {step >= 2 && (
+                  <>
+                    <motion.p layout className="flex items-center text-secondary">
+                      <Clock className="mr-2" size={16} />
+                      {t('birthTime')}: {birthday.birthTime}
+                    </motion.p>
+                    <motion.p layout className="flex items-center text-secondary">
+                      <MapPin className="mr-2" size={16} />
+                      {t('birthPlace')}: {birthday.birthPlace}
+                    </motion.p>
+                  </>
+                )}
 
-    {/* Paso 3: Información adicional */}
-    {step === 3 && (
-      <>
-        <motion.p layout className="text-secondary">
-          {t('element')}: {astrologicalElement.en}
-        </motion.p>
-        <motion.p layout className="text-secondary">
-          {t('dayOfWeek')}: {dayOfWeek}
-        </motion.p>
-        <motion.p layout className="text-secondary">
-          {t('lifePathNumber')}: {lifePathNumber}
-        </motion.p>
-        <motion.p layout className="text-secondary">
-          {t('compatibility')}: {compatibility}
-        </motion.p>
-      </>
-    )}
-  </motion.div>
-</motion.div>
+                {step === 3 && (
+                  <>
+                    <motion.p layout className="text-secondary">
+                      {t('element')}: {astrologicalElement.en}
+                    </motion.p>
+                    <motion.p layout className="text-secondary">
+                      {t('dayOfWeek')}: {dayOfWeek}
+                    </motion.p>
+                    <motion.p layout className="text-secondary">
+                      {t('lifePathNumber')}: {lifePathNumber}
+                    </motion.p>
+                    <motion.p layout className="text-secondary">
+                      {t('compatibility')}: {compatibility}
+                    </motion.p>
+                  </>
+                )}
+              </motion.div>
+            </motion.div>
 
-<AnimatePresence mode="wait">
-  {step === 3 && (
-    <motion.div
-      className="absolute bottom-0 left-0 right-0 flex justify-between gap-4 overflow-visible px-4 pb-4"
-      initial="hidden"
-      animate="visible"
-      exit="hidden"
-      variants={cardVariants}
-    >
-      <motion.div
-        className="bg-primary text-primary-foreground p-4 rounded-lg card-content shadow-lg flex-1 transform -translate-y-8 -rotate-6"
-        style={{
-          width: 200,
-          height: 280,
-          zIndex: 3,
-        }}
-        layout
-      >
-        <h3 className="text-xl font-semibold mb-2">{t('socialNetworks')}</h3>
-        <ul className="space-y-2">
-          <li className="flex items-center"><Facebook className="mr-2" /> Facebook</li>
-          <li className="flex items-center"><Twitter className="mr-2" /> Twitter</li>
-          <li className="flex items-center"><Instagram className="mr-2" /> Instagram</li>
-        </ul>
-      </motion.div>
-      <motion.div
-        className="bg-secondary text-secondary-foreground p-4 rounded-lg card-content shadow-lg flex-1 transform -translate-y-4"
-        style={{
-          width: 200,
-          height: 280,
-          zIndex: 2,
-        }}
-        layout
-      >
-        <h3 className="text-xl font-semibold mb-2">{t('astralChart')}</h3>
-        <p>{t('astralChartDescription')}</p>
-        <a href="#" className="flex items-center mt-4 text-accent hover:underline">
-          <Globe className="mr-2" /> {t('viewChart')}
-        </a>
-      </motion.div>
-      <motion.div
-        className="bg-muted text-muted-foreground p-4 rounded-lg card-content shadow-lg flex-1 transform -translate-y-8 rotate-6"
-        style={{
-          width: 200,
-          height: 280,
-          zIndex: 1,
-        }}
-        layout
-      >
-        <h3 className="text-xl font-semibold mb-2">{t('personalityTraits')}</h3>
-        <ul className="list-disc list-inside">
-          <li>{t('creative')}</li>
-          <li>{t('ambitious')}</li>
-          <li>{t('empathetic')}</li>
-          <li>{t('adventurous')}</li>
-        </ul>
-      </motion.div>
-    </motion.div>
-  )}
-</AnimatePresence>
+            {step === 3 && (
+              <motion.div
+                className="absolute top-0 right-0 bottom-0 flex flex-col justify-start gap-16 pt-6"
+                initial={{ x: 100 }}
+                animate={{ x: 0 }}
+                exit={{ x: 100 }}
+                transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+              >
+                <CardFlap
+                  icon={<Users size={24} />}
+                  title={t('socialNetworks')}
+                  isActive={activeCard === 'social'}
+                  onClick={() => toggleCard('social')}
+                >
+                  <ul className="space-y-2">
+                    <li className="flex items-center"><Facebook className="mr-2" /> Facebook</li>
+                    <li className="flex items-center"><Twitter className="mr-2" /> Twitter</li>
+                    <li className="flex items-center"><Instagram className="mr-2" /> Instagram</li>
+                  </ul>
+                </CardFlap>
+                <CardFlap
+                  icon={<Star size={24} />}
+                  title={t('astralChart')}
+                  isActive={activeCard === 'astral'}
+                  onClick={() => toggleCard('astral')}
+                >
+                  <p>{t('astralChartDescription')}</p>
+                  <a href="#" className="flex items-center mt-4 text-accent hover:underline">
+                    <Globe className="mr-2" /> {t('viewChart')}
+                  </a>
+                </CardFlap>
+                <CardFlap
+                  icon={<User size={24} />}
+                  title={t('personalityTraits')}
+                  isActive={activeCard === 'personality'}
+                  onClick={() => toggleCard('personality')}
+                >
+                  <ul className="list-disc list-inside">
+                    <li>{t('creative')}</li>
+                    <li>{t('ambitious')}</li>
+                    <li>{t('empathetic')}</li>
+                    <li>{t('adventurous')}</li>
+                  </ul>
+                </CardFlap>
+              </motion.div>
+            )}
             <motion.button
               onClick={handleClose}
               className="absolute top-4 right-4 text-foreground/50 hover:text-accent transition-colors duration-200"
@@ -300,5 +292,52 @@ export default function BirthdayDetail({ birthday, onClose }: BirthdayDetailProp
         </motion.div>
       )}
     </AnimatePresence>
+  )
+}
+
+interface CardFlapProps {
+  icon: React.ReactNode;
+  title: string;
+  isActive: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}
+
+function CardFlap({ icon, title, isActive, onClick, children }: CardFlapProps) {
+  return (
+    <div className="relative">
+      <motion.div
+        className="bg-primary text-primary-foreground p-4 rounded-l-lg cursor-pointer flex items-center justify-between absolute right-0"
+        onClick={onClick}
+        whileHover={{ x: -2 }}
+        whileTap={{ x: 0 }}
+        style={{ width: isActive ? '312px' : '48px', overflow: 'hidden' }}
+        animate={{ width: isActive ? '312px' : '48px' }}
+      >
+        {isActive ? (
+          <>
+            <ChevronLeft className={`transform transition-transform ${isActive ? 'rotate-180' : ''}`} />
+            <h3 className="text-lg font-semibold ml-2 whitespace-nowrap">{title}</h3>
+          </>
+        ) : (
+          <div className="flex items-center justify-center w-full">
+            {icon}
+          </div>
+        )}
+      </motion.div>
+      <AnimatePresence>
+        {isActive && (
+          <motion.div
+            className="bg-card text-card-foreground p-4 rounded-l-lg shadow-lg overflow-hidden absolute right-0 top-14 mr-12"
+            variants={cardVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+          >
+            {children}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   )
 }

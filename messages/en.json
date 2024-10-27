@@ -91,7 +91,26 @@
     "zodiacSign": "Zodiac Sign",
     "zodiacDescription": "Zodiac Description",
     "element": "Element",
-    "dayOfWeekMeaning": "Day of Week Meaning",
-    "selectUser": "Select a user to view their astral chart and destiny matrix"
+    "dayOfWeek": "Day of Week",
+    "dayOfWeekMeaning": {
+      "Sunday": "Ruled by the Sun. A day for personal growth and self-expression.",
+      "Monday": "Ruled by the Moon. A day for nurturing, emotions, and reflection.",
+      "Tuesday": "Ruled by Mars. A day for action, courage, and physical activity.",
+      "Wednesday": "Ruled by Mercury. A day for communication, learning, and travel.",
+      "Thursday": "Ruled by Jupiter. A day for expansion, luck, and abundance.",
+      "Friday": "Ruled by Venus. A day for love, beauty, and relationships.",
+      "Saturday": "Ruled by Saturn. A day for discipline, responsibility, and structure."
+    },
+    "elementDescription": {
+      "Fire": "Fire signs are passionate, energetic, and seek action.",
+      "Earth": "Earth signs are practical, stable, and seek security.",
+      "Air": "Air signs are intellectual, communicative, and seek new ideas.",
+      "Water": "Water signs are emotional, intuitive, and seek deep connection."
+    },
+    "selectUser": "Select a user to view their astral chart and destiny matrix",
+    "lifePathNumber": "Life Path Number",
+    "soulNumber": "Soul Number",
+    "personalityNumber": "Personality Number",
+    "descriptionNotAvailable": "Description not available"
   }
 }
