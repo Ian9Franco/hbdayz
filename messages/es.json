@@ -77,7 +77,10 @@
     "birthPlace": "Lugar de Nacimiento",
     "dayOfWeek": "Día de la Semana",
     "lifePathNumber": "Número de Camino de Vida",
-    "compatibility": "Compatibilidad"
+    "compatibility": "Compatibilidad",
+    "bestCompatibility": "Mejor Compatibilidad",
+    "compatibilityScore": "Puntaje de Compatibilidad"
+  
   },
   "WitchesSection": {
     "witchesSection": "Sección de Brujas",
@@ -108,11 +111,18 @@
       "Aire": "Los signos de aire son intelectuales, comunicativos y buscan nuevas ideas.",
       "Agua": "Los signos de agua son emocionales, intuitivos y buscan una conexión profunda."
     },
-    "selectUser": "Selecciona un usuario para ver su carta astral y matriz del destino",
-    "lifePathNumber": "Número del Camino de Vida",
-    "soulNumber": "Número del Alma",
-    "personalityNumber": "Número de Personalidad",
-    "descriptionNotAvailable": "Descripción no disponible"
-  
+      "selectUser": "Selecciona un usuario para ver su carta astral y matriz del destino",
+      "lifePathNumber": "Número de Camino de Vida",
+      
+      "soulNumber": "Número del Alma",
+      "personalityNumber": "Número de Personalidad",
+      "descriptionNotAvailable": "Descripción no disponible",
+      "compatibility": "Compatibilidad",
+      "compatibilityScore": "Puntuación de Compatibilidad",
+      "compatibilityLevel": "Nivel de Compatibilidad",
+      "mostCompatible": "Signos Más Compatibles",
+      "leastCompatible": "Signos Menos Compatibles",
+      "challengingCompatibility": "Compatibilidad Desafiante",
+      "bestCompatibility": "Mejor Compatibilidad"
   }
 }

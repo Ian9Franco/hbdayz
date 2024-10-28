@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Birthday } from '../page'
 import { useState, useRef, useEffect } from 'react'
-import { calculateCurrentAge, calculateNextAge } from '../utils/calculations'
+import { calculateCurrentAge, calculateNextAge } from '../utils/masterCalculations'
 
 const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 

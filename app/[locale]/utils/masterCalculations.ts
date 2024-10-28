@@ -1,6 +1,25 @@
 // Importamos las funciones necesarias de los archivos de astrología y numerología
-import { zodiacSigns, explainElement, dayOfWeekMeaning, calculateCompatibility as calculateAstrologicalCompatibility } from './astrology';
-import { calculateLifePathNumber as calculateNumerologyLifePathNumber, generateDestinyMatrix } from './numerology';
+import {
+  zodiacSigns,
+  dayOfWeekMeaning,
+  calculateCompatibility as calculateAstrologicalCompatibility,
+  calculateAllCompatibilities as calculateAllAstrologicalCompatibilities,
+  getLeastCompatibleSigns as getAstrologicalLeastCompatibleSigns,
+  CompatibilityResult as AstrologyCompatibilityResult,
+  explainElement as explainAstrologicalElement
+} from './astrology';
+import {
+  calculateLifePathNumber as calculateNumerologyLifePathNumber,
+  generateDestinyMatrix,
+  UserData
+} from './numerology';
+
+// Renombramos la interfaz CompatibilityResult para evitar conflictos
+export interface CalculationsCompatibilityResult extends AstrologyCompatibilityResult {}
+
+export function getLeastCompatibleSigns(sign: string): CalculationsCompatibilityResult[] {
+  return getAstrologicalLeastCompatibleSigns(sign);
+}
 
 // Función para calcular la edad actual
 export function calculateCurrentAge(birthDate: string): number {
@@ -60,6 +79,11 @@ export function calculateCompatibility(sign1: string, sign2: string): string {
   return calculateAstrologicalCompatibility(sign1, sign2).message;
 }
 
+// Función para calcular la compatibilidad con todos los signos
+export function calculateAllCompatibilities(sign: string): CalculationsCompatibilityResult[] {
+  return calculateAllAstrologicalCompatibilities(sign);
+}
+
 // Función para calcular el día de la semana de nacimiento
 export function calculateDayOfWeek(birthDate: string): string {
   const [month, day, year] = birthDate.split(' ');
@@ -70,12 +94,12 @@ export function calculateDayOfWeek(birthDate: string): string {
 
 // Función para calcular el número de camino de vida
 export function calculateLifePathNumber(birthDate: string): number {
-  // Se espera que birthDate tenga el formato 'Jan 12 2003'
-  const [month, day, year] = birthDate.split(' '); // La fecha se separa correctamente
-  const formattedBirthDate = `${year}-${month}-${day}`; // Asegúrate de que esto esté correcto
+  // birthDate is expected to be in the format 'Jan 12 2003'
+  const [month, day, year] = birthDate.split(' ');
+  const monthNum = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].indexOf(month) + 1;
+  const formattedBirthDate = `${year}-${monthNum.toString().padStart(2, '0')}-${day.padStart(2, '0')}`;
   return calculateNumerologyLifePathNumber(formattedBirthDate);
 }
-
 
 // Función para calcular la diferencia horaria entre el lugar de nacimiento y el usuario
 export function calculateTimeDifference(birthPlace: string, userTimezone: string): string {
@@ -83,8 +107,28 @@ export function calculateTimeDifference(birthPlace: string, userTimezone: string
   return `Diferencia horaria entre ${birthPlace} y ${userTimezone} pendiente de implementar.`;
 }
 
+// Función para generar la matriz del destino
+export function generateDestinyMatrixWrapper(data: {
+  name: string;
+  birthDate: string;
+  gender: string;
+  time: string;
+  place: string;
+  currentYear: number;
+}) {
+  const userData: UserData = {
+    name: data.name,
+    birthDate: data.birthDate,
+    gender: data.gender,
+    time: data.time,
+    place: data.place,
+    currentYear: data.currentYear
+  };
+  return generateDestinyMatrix(userData);
+}
+
 // Exportamos las funciones y objetos importados para que estén disponibles desde este archivo
-export { zodiacSigns, explainElement, dayOfWeekMeaning, generateDestinyMatrix };
+export { zodiacSigns, explainAstrologicalElement as explainElement, dayOfWeekMeaning };
 
 // Ejemplo de uso para verificar el funcionamiento correcto
 function testCalculations() {
@@ -93,7 +137,6 @@ function testCalculations() {
   console.log("Signo zodiacal:", zodiacSign);
   
   const element = calculateAstrologicalElement(zodiacSign.en);
-  
   console.log("Elemento:", element);
   
   const lifePathNumber = calculateLifePathNumber(birthDate);
@@ -101,6 +144,16 @@ function testCalculations() {
   
   const dayOfWeek = calculateDayOfWeek(birthDate);
   console.log("Día de la semana:", dayOfWeek);
+
+  const destinyMatrix = generateDestinyMatrixWrapper({
+    name: "John Doe",
+    birthDate: "1990-04-15",
+    gender: "Male",
+    time: "12:00",
+    place: "New York",
+    currentYear: 2024
+  });
+  console.log("Matriz del Destino:", destinyMatrix);
 }
 
 // Descomenta la siguiente línea para ejecutar la prueba

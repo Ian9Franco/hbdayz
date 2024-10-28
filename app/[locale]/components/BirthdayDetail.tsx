@@ -6,10 +6,21 @@ import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { X, Facebook, Twitter, Instagram, Globe, Clock, MapPin, ChevronLeft, Users, Star, User } from 'lucide-react'
 import { Birthday } from '../page'
-import { calculateCurrentAge, calculateZodiacSign, calculateAstrologicalElement, calculateCompatibility, calculateDayOfWeek, calculateLifePathNumber } from '../utils/calculations'
+import { 
+  calculateCurrentAge, 
+  calculateZodiacSign, 
+  calculateAstrologicalElement, 
+  calculateAllCompatibilities, 
+  calculateCompatibility, 
+  calculateDayOfWeek, 
+  calculateLifePathNumber,
+  zodiacSigns
+} from '../utils/masterCalculations'
 
+// Definimos los tipos de los pasos
 type Step = 1 | 2 | 3
 
+// Manejamos los estilos para cada paso
 interface StepStyle {
   containerWidth: number
   containerHeight: string | number
@@ -23,6 +34,7 @@ interface StepStyle {
   infoWidth: string
 }
 
+// Estilos para cada paso
 const stepStyles: Record<Step, StepStyle> = {
   1: {
     containerWidth: 400,
@@ -62,6 +74,7 @@ const stepStyles: Record<Step, StepStyle> = {
   },
 }
 
+// Variantes de animación para las tarjetas
 const cardVariants = {
   hidden: {
     width: 0,
@@ -82,6 +95,7 @@ const cardVariants = {
   },
 }
 
+// Propiedades del componente BirthdayDetail
 interface BirthdayDetailProps {
   birthday: Birthday
   onClose: () => void
@@ -127,12 +141,15 @@ export default function BirthdayDetail({ birthday, onClose }: BirthdayDetailProp
 
   const currentStyle = stepStyles[step]
 
+// Cálculos astrológicos
   const currentAge = calculateCurrentAge(`${birthday.date} ${birthday.birthYear}`)
   const zodiacSign = calculateZodiacSign(`${birthday.date} ${birthday.birthYear}`)
   const astrologicalElement = calculateAstrologicalElement(zodiacSign.en)
-  const compatibility = calculateCompatibility(zodiacSign.en, "Libra")
+  const compatibilityResults = calculateAllCompatibilities(zodiacSign.en)
+  const bestCompatibility = compatibilityResults[0]
   const dayOfWeek = calculateDayOfWeek(`${birthday.date} ${birthday.birthYear}`)
   const lifePathNumber = calculateLifePathNumber(`${birthday.date} ${birthday.birthYear}`)
+
 
   return (
     <AnimatePresence>
@@ -164,7 +181,7 @@ export default function BirthdayDetail({ birthday, onClose }: BirthdayDetailProp
                 height: currentStyle.imageHeight,
               }}
               className="relative w-full cursor-pointer overflow-hidden rounded-2xl"
-              onClick={() => setStep((prevStep) => ((prevStep % 3) + 1) as Step)}
+              onClick={handleClick}
             >
               <Image
                 src={`/userlogo/${birthday.gender}.png`}
@@ -226,8 +243,11 @@ export default function BirthdayDetail({ birthday, onClose }: BirthdayDetailProp
                     <motion.p layout className="text-secondary">
                       {t('lifePathNumber')}: {lifePathNumber}
                     </motion.p>
-                    <motion.p layout className="text-secondary">
-                      {t('compatibility')}: {compatibility}
+                    <motion.p layout className="text-secondary mt-2">
+                      {t('bestCompatibility')}: {bestCompatibility.sign} - {bestCompatibility.message}
+                    </motion.p>
+                    <motion.p layout className="text-secondary mt-1">
+                      {t('compatibilityScore')}: {bestCompatibility.score}
                     </motion.p>
                   </>
                 )}
@@ -295,6 +315,7 @@ export default function BirthdayDetail({ birthday, onClose }: BirthdayDetailProp
   )
 }
 
+// Componente CardFlap para mostrar información adicional
 interface CardFlapProps {
   icon: React.ReactNode;
   title: string;

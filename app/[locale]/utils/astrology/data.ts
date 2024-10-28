@@ -1,26 +1,5 @@
-// Tipos e Interfaces
-type ZodiacSign = {
-  element: string;
-  modality: "Cardinal" | "Fijo" | "Mutable";
-  ruler: string;
-  description: string;
-  associatedDay?: string;
-};
+import { ZodiacSign, Planet } from './types';
 
-type CompatibilityResult = {
-  compatible: boolean;
-  message: string;
-};
-
-type Planet = "Sol" | "Luna" | "Marte" | "Venus" | "Mercurio" | 
-              "Júpiter" | "Saturno" | "Urano" | "Neptuno" | "Plutón";
-
-interface NatalChart {
-  planet: Planet;
-  sign: string;
-}
-
-// Datos de los signos zodiacales
 export const zodiacSigns: Record<string, ZodiacSign> = {
   Aries: {
     element: "Fuego",
@@ -96,48 +75,46 @@ export const zodiacSigns: Record<string, ZodiacSign> = {
   },
 };
 
-// Significados de los días de la semana
 export const dayOfWeekMeaning: Record<string, string> = {
-  Domingo: "Regido por el Sol. Un día para el crecimiento personal y la autoexpresión.",
-  Lunes: "Regido por la Luna. Ideal para conectar con las emociones y nutrir la reflexión.",
-  Martes: "Regido por Marte. Un día para la acción, el coraje y la actividad física.",
-  Miércoles: "Regido por Mercurio. Propicio para la comunicación, el aprendizaje y los viajes.",
-  Jueves: "Regido por Júpiter. Un día para la expansión, la suerte y la prosperidad.",
-  Viernes: "Regido por Venus. Ideal para el amor, la belleza y las relaciones.",
-  Sábado: "Regido por Saturno. Un día para la disciplina, la responsabilidad y la estructura."
-};
-
-
-// Planetary Influences
-export const planetInfluences: Record<Planet, Record<string, string>> = {
-  Sol: {
-    Aries: "Energía, liderazgo y espíritu pionero.",
-    Tauro: "Estabilidad, búsqueda de placeres y seguridad.",
-    Géminis: "Versatilidad, comunicación y curiosidad.",
-    Cáncer: "Creatividad, autoexpresión y necesidad de afecto.",
-    Leo: "Confianza, generosidad y deseo de ser admirado.",
-    Virgo: "Practicidad, atención al detalle y enfoque en el servicio.",
-    Libra: "Armonía, relaciones y búsqueda de belleza.",
-    Escorpio: "Intensidad, pasión y deseo de transformación.",
-    Sagitario: "Aventura, filosofía y búsqueda de la verdad.",
-    Capricornio: "Ambición, disciplina y necesidad de estructura.",
-    Acuario: "Innovación, originalidad y enfoque en la comunidad.",
-    Piscis: "Sensibilidad, espiritualidad y conexión con lo intuitivo.",
-  },
-  Luna: {
-    Aries: "Emociones intensas y reacciones rápidas.",
-    Tauro: "Necesidad de seguridad emocional y estabilidad.",
-    Géminis: "Cambio constante en los estados emocionales.",
-    Cáncer: "Profunda conexión emocional y deseo de cuidar.",
-    Leo: "Necesidad de reconocimiento y expresión creativa.",
-    Virgo: "Análisis emocional y búsqueda de orden.",
-    Libra: "Búsqueda de equilibrio en las relaciones personales.",
-    Escorpio: "Emociones profundas y deseo de conexión intensa.",
-    Sagitario: "Necesidad de libertad y exploración emocional.",
-    Capricornio: "Enfoque práctico y control emocional.",
-    Acuario: "Emociones desapegadas y pensamiento innovador.",
-    Piscis: "Intuición emocional y sensibilidad extrema.",
-  },
+    Domingo: "Regido por el Sol. Un día para el crecimiento personal y la autoexpresión.",
+    Lunes: "Regido por la Luna. Ideal para conectar con las emociones y nutrir la reflexión.",
+    Martes: "Regido por Marte. Un día para la acción, el coraje y la actividad física.",
+    Miércoles: "Regido por Mercurio. Propicio para la comunicación, el aprendizaje y los viajes.",
+    Jueves: "Regido por Júpiter. Un día para la expansión, la suerte y la prosperidad.",
+    Viernes: "Regido por Venus. Ideal para el amor, la belleza y las relaciones.",
+    Sábado: "Regido por Saturno. Un día para la disciplina, la responsabilidad y la estructura."
+  };
+  
+  export const planetInfluences: Record<Planet, Record<string, string>> = {
+    Sol: {
+      Aries: "Energía, liderazgo y espíritu pionero.",
+      Tauro: "Estabilidad, búsqueda de placeres y seguridad.",
+      Géminis: "Versatilidad, comunicación y curiosidad.",
+      Cáncer: "Creatividad, autoexpresión y necesidad de afecto.",
+      Leo: "Confianza, generosidad y deseo de ser admirado.",
+      Virgo: "Practicidad, atención al detalle y enfoque en el servicio.",
+      Libra: "Armonía, relaciones y búsqueda de belleza.",
+      Escorpio: "Intensidad, pasión y deseo de transformación.",
+      Sagitario: "Aventura, filosofía y búsqueda de la verdad.",
+      Capricornio: "Ambición, disciplina y necesidad de estructura.",
+      Acuario: "Innovación, originalidad y enfoque en la comunidad.",
+      Piscis: "Sensibilidad, espiritualidad y conexión con lo intuitivo.",
+    },
+    Luna: {
+      Aries: "Emociones intensas y reacciones rápidas.",
+      Tauro: "Necesidad de seguridad emocional y estabilidad.",
+      Géminis: "Cambio constante en los estados emocionales.",
+      Cáncer: "Profunda conexión emocional y deseo de cuidar.",
+      Leo: "Necesidad de reconocimiento y expresión creativa.",
+      Virgo: "Análisis emocional y búsqueda de orden.",
+      Libra: "Búsqueda de equilibrio en las relaciones personales.",
+      Escorpio: "Emociones profundas y deseo de conexión intensa.",
+      Sagitario: "Necesidad de libertad y exploración emocional.",
+      Capricornio: "Enfoque práctico y control emocional.",
+      Acuario: "Emociones desapegadas y pensamiento innovador.",
+      Piscis: "Intuición emocional y sensibilidad extrema.",
+    },
+    
   Mercurio: {
     Aries: "Pensamiento rápido y comunicación directa.",
     Tauro: "Enfoque práctico en la comunicación y el aprendizaje.",
@@ -252,74 +229,4 @@ export const planetInfluences: Record<Planet, Record<string, string>> = {
   },
 };
 
-// Funciones
-export function explainElement(element: string): string {
-  const descriptions: Record<string, string> = {
-    Fuego: "Los signos de fuego son apasionados, energéticos y buscan la acción.",
-    Tierra: "Los signos de tierra son prácticos, estables y buscan la seguridad.",
-    Aire: "Los signos de aire son intelectuales, comunicativos y buscan nuevas ideas.",
-    Agua: "Los signos de agua son emocionales, intuitivos y buscan la conexión profunda.",
-  };
-  return descriptions[element] ?? "Elemento no reconocido.";
-}
 
-export function calculateCompatibility(
-  sign1: string, 
-  sign2: string
-): CompatibilityResult {
-  // Verificar si ambos signos existen en el objeto zodiacSigns
-  if (!zodiacSigns[sign1] || !zodiacSigns[sign2]) {
-    return {
-      compatible: false,
-      message: "Uno o ambos signos no son válidos."
-    };
-  }
-
-  const element1 = zodiacSigns[sign1].element;
-  const element2 = zodiacSigns[sign2].element;
-
-  const compatibleElements = element1 === element2 || 
-    (element1 === "Fuego" && element2 === "Aire") ||
-    (element1 === "Aire" && element2 === "Fuego") ||
-    (element1 === "Tierra" && element2 === "Agua") ||
-    (element1 === "Agua" && element2 === "Tierra");
-
-  const message = compatibleElements
-    ? `${sign1} y ${sign2} tienen alta compatibilidad por su afinidad elemental.`
-    : `${sign1} y ${sign2} podrían tener desafíos, pero con esfuerzo pueden complementarse.`;
-
-  return { compatible: compatibleElements, message };
-}
-
-export function explainTimeDifference(
-  place: string, 
-  timezone: string
-): string {
-  return `La diferencia horaria entre ${place} y ${timezone} puede influir en tus ritmos y sincronización con los demás.`;
-}
-
-export function generateNatalChartInterpretation(chart: NatalChart[]): string {
-  return chart
-    .map(({ planet, sign }) =>
-      `${planet} en ${sign}: ${planetInfluences[planet][sign] ?? "Sin interpretación disponible aún."}`
-    )
-    .join("\n");
-}
-
-// Example usage
-export default function Component() {
-  // Compatibility example
-  const compatibilityResult = calculateCompatibility("Aries", "Leo");
-  console.log(compatibilityResult.message);
-
-  // Natal chart interpretation example
-  const userChart: NatalChart[] = [
-    { planet: "Sol", sign: "Leo" },
-    { planet: "Luna", sign: "Piscis" },
-    { planet: "Marte", sign: "Aries" },
-    { planet: "Venus", sign: "Tauro" }
-  ];
-  console.log(generateNatalChartInterpretation(userChart));
-
-  return null; // This component doesn't render anything, it's just a module
-}
