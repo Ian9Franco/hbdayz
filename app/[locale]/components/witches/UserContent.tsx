@@ -28,8 +28,7 @@ interface UserContentProps {
 
 const MotionCard = motion(Card);
 
-// Componente para animar las tarjetas al entrar en el viewport
-function AnimatedCard({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+function AnimatedCard({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -52,6 +51,7 @@ function AnimatedCard({ children, delay = 0 }: { children: React.ReactNode; dela
         hidden: { opacity: 0, y: 50 }
       }}
       transition={{ duration: 0.5, delay }}
+      className={`neon-glow ${className}`}
     >
       {children}
     </MotionCard>
@@ -59,7 +59,6 @@ function AnimatedCard({ children, delay = 0 }: { children: React.ReactNode; dela
 }
 
 export default function UserContent({ selectedUser, currentLocale, t }: UserContentProps) {
-  // Función para obtener el icono del día de la semana
   const getIcon = (day: string) => {
     switch (day) {
       case 'Domingo': return <FaSun className="text-yellow-500" />;
@@ -73,17 +72,14 @@ export default function UserContent({ selectedUser, currentLocale, t }: UserCont
     }
   };
 
-  // Función para obtener la cadena localizada
   const getLocaleString = (localeString: { es: string; en: string }): string => {
     return localeString[currentLocale as keyof typeof localeString] || localeString.en;
   };
 
-  // Si no hay usuario seleccionado, mostrar mensaje
   if (!selectedUser) {
     return <p className="text-center text-lg text-muted-foreground">{t('selectUser')}</p>;
   }
 
-  // Cálculos astrológicos y numerológicos
   const zodiacSign = calculateZodiacSign(`${selectedUser.date} ${selectedUser.birthYear}`);
   const astrologicalElement = zodiacSign ? calculateAstrologicalElement(zodiacSign.en) : null;
   const compatibilityResults = zodiacSign ? calculateAllCompatibilities(zodiacSign.en) : null;
@@ -100,7 +96,7 @@ export default function UserContent({ selectedUser, currentLocale, t }: UserCont
   });
 
   return (
-    <div className="space-y-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* Carta Astral */}
       <AnimatedCard delay={0.1}>
         <CardHeader>
@@ -108,7 +104,6 @@ export default function UserContent({ selectedUser, currentLocale, t }: UserCont
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-            {/* Información del usuario */}
             <div className="flex items-center">
               <User2 className="w-6 h-6 text-primary mr-2 flex-shrink-0" />
               <div>
@@ -138,7 +133,6 @@ export default function UserContent({ selectedUser, currentLocale, t }: UserCont
               </div>
             </div>
           </div>
-          {/* Signo zodiacal y elemento */}
           {zodiacSign && (
             <motion.div
               className="mt-4 p-4 bg-accent text-accent-foreground rounded-lg"
@@ -172,7 +166,6 @@ export default function UserContent({ selectedUser, currentLocale, t }: UserCont
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {/* Número de Camino de Vida */}
             <motion.div
               className="p-4 bg-accent text-accent-foreground rounded-lg"
               initial={{ opacity: 0, y: 20 }}
@@ -188,7 +181,6 @@ export default function UserContent({ selectedUser, currentLocale, t }: UserCont
               <p className="text-sm">{lifePathNumber ? getExtendedInterpretation(lifePathNumber) : t('lifePathNumberNotAvailable')}</p>
             </motion.div>
 
-            {/* Número del Alma */}
             <motion.div
               className="p-4 bg-accent text-accent-foreground rounded-lg"
               initial={{ opacity: 0, y: 20 }}
@@ -204,7 +196,6 @@ export default function UserContent({ selectedUser, currentLocale, t }: UserCont
               <p className="text-sm">{destinyMatrix?.soulNumber}</p>
             </motion.div>
 
-            {/* Número de Personalidad */}
             <motion.div
               className="p-4 bg-accent text-accent-foreground rounded-lg"
               initial={{ opacity: 0, y: 20 }}
@@ -220,7 +211,6 @@ export default function UserContent({ selectedUser, currentLocale, t }: UserCont
               <p className="text-sm">{destinyMatrix?.personalityNumber}</p>
             </motion.div>
           </div>
-          {/* Día de nacimiento */}
           {dayOfWeek && (
             <motion.div
               className="mt-4 flex items-center space-x-2"
@@ -305,7 +295,6 @@ export default function UserContent({ selectedUser, currentLocale, t }: UserCont
                       <li key={i}>{factor}</li>
                     ))}
                   </ul>
-                
                 </motion.div>
               ))}
             </div>

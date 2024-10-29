@@ -10,12 +10,10 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'], // Default font for body text
-        oswald: ['Oswald', 'sans-serif'], // Oswald font for titles and names
+        sans: ['Inter', 'sans-serif'],
+        oswald: ['Oswald', 'sans-serif'],
       },
-      // Add Oswald font variables
       fontSize: {
-        // Puedes ajustar estos valores según tus necesidades de diseño
         'oswald-xs': ['0.75rem', { lineHeight: '1rem', letterSpacing: '0.05em' }],
         'oswald-sm': ['0.875rem', { lineHeight: '1.25rem', letterSpacing: '0.05em' }],
         'oswald-base': ['1rem', { lineHeight: '1.5rem', letterSpacing: '0.05em' }],
@@ -30,7 +28,6 @@ const config: Config = {
         'oswald-8xl': ['6rem', { lineHeight: '1', letterSpacing: '0.05em' }],
         'oswald-9xl': ['8rem', { lineHeight: '1', letterSpacing: '0.05em' }],
       },
-      // Existing color configuration
       colors: {
         background: 'hsl(var(--background) / <alpha-value>)',
         foreground: 'hsl(var(--foreground) / <alpha-value>)',
@@ -62,11 +59,19 @@ const config: Config = {
         input: 'hsl(var(--input) / <alpha-value>)',
         ring: 'hsl(var(--ring) / <alpha-value>)',
       },
-      // Existing border radius configuration
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+      },
+      keyframes: {
+        neonPulse: {
+          '0%, 100%': { boxShadow: '0 0 5px hsl(var(--border)), 0 0 10px hsl(var(--border))' },
+          '50%': { boxShadow: '0 0 20px hsl(var(--border)), 0 0 30px hsl(var(--border))' },
+        },
+      },
+      animation: {
+        neon: 'neonPulse 1.5s ease-in-out infinite',
       },
     },
   },

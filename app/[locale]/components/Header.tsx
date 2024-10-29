@@ -15,7 +15,7 @@ export default function Header({ title, view, setView }: HeaderProps) {
   const t = useTranslations('Header');
 
   return (
-    <header className="flex flex-row justify-between items-center mb-6 px-2 sm:px-4 py-2 sm:py-3 bg-card rounded-lg shadow-md">
+    <header className="flex flex-row justify-between items-center mb-6 px-2 sm:px-4 py-2 sm:py-3 bg-card rounded-lg shadow-md w-full">
       <h1 className="text-lg sm:text-2xl font-bold text-foreground">{title}</h1>
 
       <div className="flex items-center bg-muted p-1 rounded-lg text-sm sm:text-base">

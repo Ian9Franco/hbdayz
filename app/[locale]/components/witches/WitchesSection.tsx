@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
@@ -16,6 +16,7 @@ interface WitchesSectionProps {
 export default function WitchesSection({ birthdays, currentLocale }: WitchesSectionProps) {
   const [selectedUser, setSelectedUser] = useState<Birthday | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  
   const t = useTranslations('WitchesSection');
 
   const { scrollY } = useScroll();
@@ -45,7 +46,7 @@ export default function WitchesSection({ birthdays, currentLocale }: WitchesSect
   };
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground">
+    <div className="relative min-h-screen bg-background text-foreground w-full">
       <AnimatePresence>
         {isSidebarOpen && (
           <motion.div
@@ -71,34 +72,37 @@ export default function WitchesSection({ birthdays, currentLocale }: WitchesSect
         )}
       </AnimatePresence>
 
-      <motion.button
-        onClick={toggleSidebar}
-        className="fixed top-4 left-4 z-40 p-3 bg-primary text-primary-foreground rounded-full shadow-lg"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        {isSidebarOpen ? <ChevronLeft /> : <ChevronRight />}
-      </motion.button>
-
       <motion.div 
         className="fixed top-0 left-0 right-0 h-1 bg-primary z-50"
         style={{ scaleX }}
       />
 
-      <div className="p-4 lg:p-8">
+      <header className="py-4 flex items-center border-b w-full">
+        <motion.button
+          onClick={toggleSidebar}
+          className="mr-4 p-3 bg-primary text-primary-foreground rounded-full shadow-lg"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          {isSidebarOpen ? <ChevronLeft /> : <ChevronRight />}
+        </motion.button>
         <motion.h1 
-          className="text-2xl lg:text-3xl font-bold mb-6"
+          className="text-2xl lg:text-3xl font-bold"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
           {t('witchesSection')}
         </motion.h1>
+      </header>
+
+      <main className="mt-6 w-full">
         <motion.div
           initial="hidden"
           animate="visible"
           variants={contentVariants}
           transition={{ staggerChildren: 0.1 }}
+          className="w-full"
         >
           <UserContent
             selectedUser={selectedUser}
@@ -106,7 +110,7 @@ export default function WitchesSection({ birthdays, currentLocale }: WitchesSect
             t={t}
           />
         </motion.div>
-      </div>
+      </main>
     </div>
   );
 }

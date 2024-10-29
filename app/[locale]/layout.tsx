@@ -7,21 +7,17 @@ import ToggleMenu from './components/toggleMenu';
 import "../../styles/globals.css";
 import { setRequestLocale } from 'next-intl/server';
 
-// Configuración de la fuente Inter
 const inter = Inter({ subsets: ['latin'] })
 
-// Metadatos de la aplicación
 export const metadata: Metadata = {
   title: "Recordatorio de Cumpleaños",
   description: "Una aplicación simple para recordar cumpleaños",
 };
 
-// Genera los parámetros estáticos para los idiomas soportados
 export function generateStaticParams() {
   return [{ locale: 'en' }, { locale: 'es' }];
 }
 
-// Componente principal del layout
 export default async function RootLayout({
   children,
   params: { locale }
@@ -29,7 +25,6 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  // Establecer el locale para la solicitud actual
   setRequestLocale(locale);
 
   let messages;
@@ -41,14 +36,12 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className="antialiased font-sans">
+      <body className={`antialiased font-sans ${inter.className}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <NextIntlClientProvider locale={locale} messages={messages}>
             <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
-              <div className="container mx-auto px-4 py-8 max-w-3xl mt-8">
-                {children}
-                <ToggleMenu currentLocale={locale} />
-              </div>
+              {children}
+              <ToggleMenu currentLocale={locale} />
             </div>
           </NextIntlClientProvider>
         </ThemeProvider>
@@ -56,8 +49,3 @@ export default async function RootLayout({
     </html>
   );
 }
-
-// Añadimos animaciones de entrada suaves para cada sección
-// Mejoramos la apariencia de los avatares con sombras y efectos hover
-// Implementamos un efecto de escala suave al pasar el mouse por los elementos
-// Utilizamos colores de la paleta definida en Tailwind para mantener la consistencia

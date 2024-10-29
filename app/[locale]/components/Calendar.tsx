@@ -17,7 +17,6 @@ export default function Calendar({ birthdays, onSelectBirthday }: CalendarProps)
   const [selectedMonth, setSelectedMonth] = useState<string | null>(null)
   const modalRef = useRef<HTMLDivElement>(null)
 
-  // Organiza los cumpleaños por mes
   const birthdaysByMonth = months.map(month => ({
     month,
     birthdays: birthdays.filter(b => new Date(b.date).getMonth() === months.indexOf(month))
@@ -25,7 +24,6 @@ export default function Calendar({ birthdays, onSelectBirthday }: CalendarProps)
 
   const currentMonth = new Date().getMonth()
 
-  // Efecto para cerrar el modal al hacer clic fuera de él
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
@@ -39,7 +37,6 @@ export default function Calendar({ birthdays, onSelectBirthday }: CalendarProps)
     }
   }, [])
 
-  // Función para obtener el nombre completo del mes
   const getFullMonthName = (monthAbbr: string) => {
     const date = new Date(Date.parse(`${monthAbbr} 1, 2000`))
     return date.toLocaleString('default', { month: 'long' })
@@ -56,14 +53,14 @@ export default function Calendar({ birthdays, onSelectBirthday }: CalendarProps)
         <motion.div
           key={month}
           className={`bg-card text-card-foreground p-2 sm:p-4 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 ${
-            index === currentMonth ? 'ring-2 ring-accent' : ''
+            index === currentMonth ? 'ring-2 ring-accent neon-glow' : ''
           }`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: index * 0.05 }}
         >
           <motion.h3 
-            className={`text-base sm:text-lg font-semibold mb-2 sm:mb-3 ${index === currentMonth ? 'text-accent' : 'text-foreground'}`}
+            className={`text-base sm:text-lg font-semibold mb-2 sm:mb-3 ${index === currentMonth ? 'text-accent neon-text' : 'text-foreground'}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -76,7 +73,6 @@ export default function Calendar({ birthdays, onSelectBirthday }: CalendarProps)
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            {/* Muestra los primeros 5 cumpleaños del mes */}
             {birthdays.slice(0, 5).map(birthday => (
               <motion.div
                 key={birthday.id}
@@ -94,7 +90,6 @@ export default function Calendar({ birthdays, onSelectBirthday }: CalendarProps)
                 />
               </motion.div>
             ))}
-            {/* Muestra un botón '+' si hay más de 5 cumpleaños */}
             {birthdays.length > 5 && (
               <motion.div 
                 className="flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 bg-secondary text-secondary-foreground rounded-full text-xs sm:text-sm font-medium shadow-sm cursor-pointer"
@@ -109,7 +104,6 @@ export default function Calendar({ birthdays, onSelectBirthday }: CalendarProps)
         </motion.div>
       ))}
 
-      {/* Modal para mostrar todos los cumpleaños de un mes */}
       <AnimatePresence>
         {selectedMonth && (
           <motion.div

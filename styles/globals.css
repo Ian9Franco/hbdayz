@@ -6,44 +6,46 @@
 
 @layer base {
   :root {
-    --background: 43 47% 96%;
-    --foreground: 24 15% 18%;
-    --card: 43 47% 96%;
-    --card-foreground: 24 15% 18%;
-    --primary: 24 15% 18%;
-    --primary-foreground: 43 47% 96%;
-    --secondary: 35 29% 83%;
-    --secondary-foreground: 24 15% 18%;
-    --muted: 35 29% 83%;
-    --muted-foreground: 24 15% 18%;
-    --accent: 24 28% 49%;
-    --accent-foreground: 43 47% 96%;
-    --destructive: 0 85% 60%;
-    --destructive-foreground: 43 47% 96%;
-    --border: 35 29% 83%;
-    --input: 35 29% 83%;
-    --ring: 24 15% 18%;
+    /* Modo claro (light mode) con colores menos pálidos y mejor contraste */
+    --background: 35 40% 90%; /* Fondo principal: beige más cálido y menos blanco */
+    --foreground: 25 30% 15%; /* Texto principal: marrón más oscuro para mejor legibilidad */
+    --card: 35 35% 85%; /* Fondo de tarjetas: beige más oscuro para distinguirse del fondo */
+    --card-foreground: 25 30% 15%; /* Texto de tarjetas: marrón oscuro */
+    --primary: 25 70% 30%; /* Color primario: marrón más rico y saturado */
+    --primary-foreground: 35 40% 95%; /* Texto sobre color primario: beige muy claro */
+    --secondary: 30 30% 60%; /* Color secundario: beige medio */
+    --secondary-foreground: 25 30% 15%; /* Texto sobre color secundario: marrón oscuro */
+    --muted: 30 30% 70%; /* Color atenuado: beige medio */
+    --muted-foreground: 25 30% 25%; /* Texto atenuado: marrón medio para mejor legibilidad */
+    --accent: 20 60% 40%; /* Color de acento: marrón rojizo más pronunciado */
+    --accent-foreground: 35 40% 95%; /* Texto sobre acento: beige muy claro */
+    --destructive: 0 85% 60%; /* Color destructivo: rojo (sin cambios) */
+    --destructive-foreground: 35 40% 95%; /* Texto sobre destructivo: beige muy claro */
+    --border: 30 30% 60%; /* Color de borde: beige más oscuro para mejor definición */
+    --input: 35 35% 85%; /* Color de fondo para inputs: beige más oscuro */
+    --ring: 25 70% 30%; /* Color del anillo de enfoque: marrón oscuro */
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 270 24% 7%;
-    --foreground: 60 9% 98%;
-    --card: 270 24% 9%;
-    --card-foreground: 60 9% 98%;
-    --primary: 270 24% 9%;
-    --primary-foreground: 60 9% 98%;
-    --secondary: 240 5% 34%;
-    --secondary-foreground: 60 9% 98%;
-    --muted: 240 5% 34%;
-    --muted-foreground: 60 9% 98%;
-    --accent: 318 14% 22%;
-    --accent-foreground: 60 9% 98%;
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 60 9% 98%;
-    --border: 240 5% 34%;
-    --input: 240 5% 34%;
-    --ring: 60 9% 98%;
+    /* Modo oscuro (dark mode) con mayor contraste y mejor legibilidad */
+    --background: 270 35% 7%; /* Fondo principal: morado muy oscuro */
+    --foreground: 60 20% 95%; /* Texto principal: casi blanco con un toque de calidez */
+    --card: 270 30% 15%; /* Fondo de tarjetas: morado oscuro, más claro que el fondo */
+    --card-foreground: 60 20% 95%; /* Texto de tarjetas: casi blanco */
+    --primary: 270 50% 30%; /* Color primario: morado más saturado */
+    --primary-foreground: 60 20% 95%; /* Texto sobre color primario: casi blanco */
+    --secondary: 250 20% 30%; /* Color secundario: gris azulado oscuro más saturado */
+    --secondary-foreground: 60 20% 95%; /* Texto sobre color secundario: casi blanco */
+    --muted: 250 20% 30%; /* Color atenuado: gris azulado oscuro */
+    --muted-foreground: 60 20% 80%; /* Texto atenuado: gris claro para mejor legibilidad */
+    --accent: 300 50% 35%; /* Color de acento: púrpura más saturado y claro */
+    --accent-foreground: 60 20% 95%; /* Texto sobre acento: casi blanco */
+    --destructive: 0 80% 40%; /* Color destructivo: rojo oscuro más saturado */
+    --destructive-foreground: 60 20% 95%; /* Texto sobre destructivo: casi blanco */
+    --border: 250 20% 40%; /* Color de borde: gris azulado más claro para mejor definición */
+    --input: 270 30% 15%; /* Color de fondo para inputs: morado oscuro */
+    --ring: 300 50% 35%; /* Color del anillo de enfoque: púrpura para destacar */
   }
 }
 
@@ -54,12 +56,17 @@
   body {
     @apply bg-background text-foreground font-sans;
   }
-  
 }
 
 @layer components {
   .title-font {
     @apply font-oswald;
+  }
+  .neon-border {
+    @apply border-2 animate-neon;
+  }
+  .badge {
+    @apply p-2 rounded-lg border border-gray-300;
   }
 }
 
@@ -73,7 +80,34 @@
     transition-duration: 300ms;
   }
 }
-Badge {
-  @apply p-2 rounded-lg border border-gray-300; 
+
+@keyframes neonPulse {
+  0%, 100% {
+    box-shadow: 0 0 3px hsl(var(--border)), 0 0 5px hsl(var(--border)); /* Reducido */
+  }
+  50% {
+    box-shadow: 0 0 10px hsl(var(--border)), 0 0 15px hsl(var(--border)); /* Reducido */
+  }
 }
-/* You can add any additional custom styles here */
+
+@keyframes neon-glow {
+  0%, 100% {
+    box-shadow: 0 0 3px hsl(var(--accent)), 0 0 5px hsl(var(--accent)); /* Reducido */
+  }
+  50% {
+    box-shadow: 0 0 10px hsl(var(--accent)), 0 0 15px hsl(var(--accent)); /* Reducido */
+  }
+}
+
+[style*="--border"] {
+  box-shadow: 0 0 5px hsl(var(--border)), 0 0 10px hsl(var(--border));
+  animation: neonPulse 1.5s ease-in-out infinite;
+}
+
+.neon-glow {
+  animation: neon-glow 3s ease-in-out infinite;
+}
+
+.neon-text {
+  text-shadow: 0 0 5px hsl(var(--accent)), 0 0 10px hsl(var(--accent));
+}

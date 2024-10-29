@@ -12,9 +12,7 @@ interface UserSidebarProps {
 export default function UserSidebar({ birthdays, handleSelectUser, t }: UserSidebarProps) {
   return (
     <div className="p-4 h-full overflow-y-auto scrollbar-thin scrollbar-thumb-primary scrollbar-track-transparent">
-      {/* Título de la lista de usuarios */}
-      <h2 className="text-xl font-bold mb-4">{t('userList')}</h2>
-      
+      {/* Título de la lista de usuarios */}      
       {/* Lista de usuarios */}
       {birthdays.map((birthday) => (
         <motion.button

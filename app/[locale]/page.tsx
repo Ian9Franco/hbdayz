@@ -13,7 +13,6 @@ import Login from './components/Login'
 import ToggleMenu from './components/toggleMenu'
 import WitchesSection from './components/witches/WitchesSection'
 
-
 // Interfaz para el objeto Birthday
 export interface Birthday {
   id: string
@@ -22,8 +21,8 @@ export interface Birthday {
   birthYear: number
   gender: 'male' | 'female'
   age: number
-  birthTime: string // Nueva propiedad para la hora de nacimiento
-  birthPlace: string // Nueva propiedad para el lugar de nacimiento
+  birthTime: string
+  birthPlace: string
 }
 // Datos de ejemplo para los cumpleaños
 const birthdays: Birthday[] = [
@@ -121,13 +120,13 @@ const birthdays: Birthday[] = [
   // Octubre
   { 
     id: '10', 
-    name: 'María Fernández', 
-    date: 'Dec 3', 
-    birthYear: 1999, 
+    name: 'Domizo', 
+    date: 'May 7', 
+    birthYear: 2001, 
     gender: 'female', 
-    age: 25, 
-    birthTime: '18:25', 
-    birthPlace: 'Barcelona, España' 
+    age: 23, 
+    birthTime: '11:30', 
+    birthPlace: 'Salta, Argentina' 
   },
   { 
     id: '11', 
@@ -303,18 +302,15 @@ const birthdays: Birthday[] = [
 ]
 
 export default function Page({ params: { locale } }: { params: { locale: string } }) {
-  // Estados para manejar la vista, el cumpleaños seleccionado, carga y autenticación
   const [view, setView] = useState<'list' | 'calendar' | 'witches'>('list')
   const [selectedBirthday, setSelectedBirthday] = useState<Birthday | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   
-  // Hooks para traducciones y sonidos
   const t = useTranslations('Index')
   const [playViewChange] = useSound('/sounds/view-change.mp3')
   const [playSelect] = useSound('/sounds/select.mp3')
 
-  // Efecto para simular carga inicial
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false)
@@ -322,7 +318,6 @@ export default function Page({ params: { locale } }: { params: { locale: string 
     return () => clearTimeout(timer)
   }, [])
 
-  // Manejadores de eventos
   const handleSelectBirthday = (birthday: Birthday) => {
     setSelectedBirthday(birthday)
     playSelect()
@@ -349,9 +344,10 @@ export default function Page({ params: { locale } }: { params: { locale: string 
         {isLoading && <Preloader />}
         {!isLoading && !isLoggedIn && <Login onLoginSuccess={handleLoginSuccess} currentLocale={locale} />}
       </AnimatePresence>
-      <ToggleMenu currentLocale={locale} />
       {!isLoading && isLoggedIn && (
-        <div className="space-y-8">
+        // Contenedor principal con efecto de sombra 3D
+        <div className={`px-4 py-8 ${view === 'witches' ? 'max-w-[1600px]' : 'max-w-3xl'} mx-auto rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.1)]`}>
+          {/* Comentario: Encabezado */}
           <Header title={t('title')} view={view} setView={handleViewChange} />
           <AnimatePresence mode="wait">
             <motion.main
@@ -360,21 +356,28 @@ export default function Page({ params: { locale } }: { params: { locale: string 
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
+              className="p-4 rounded-lg mt-4"
             >
               {view === 'list' ? (
+                // Comentario: Lista de cumpleaños
                 <BirthdayList birthdays={birthdays} onSelectBirthday={handleSelectBirthday} />
               ) : view === 'calendar' ? (
+                // Comentario: Calendario
                 <Calendar birthdays={birthdays} onSelectBirthday={handleSelectBirthday} />
               ) : (
+                // Comentario: Sección de brujas
                 <WitchesSection birthdays={birthdays} currentLocale={locale} />
               )}
             </motion.main>
           </AnimatePresence>
           {selectedBirthday && (
+            // Comentario: Detalle de cumpleaños
             <BirthdayDetail birthday={selectedBirthday} onClose={handleCloseBirthdayDetail} />
           )}
         </div>
       )}
+      {/* Comentario: Menú de alternancia */}
+      <ToggleMenu currentLocale={locale} />
     </>
   )
 }
