@@ -82,8 +82,8 @@
     "compatibilityScore": "Puntaje de Compatibilidad"
   
   },
-  "WitchesSection": {
-    "witchesSection": "Sección de Brujeria",
+ "WitchesSection": {
+    "witchesSection": "Sección de Brujería",
     "userList": "Lista de Usuarios",
     "astralChart": "Carta Astral",
     "destinyMatrix": "Matriz del Destino",
@@ -104,25 +104,45 @@
       "Viernes": "Regido por Venus. Un día para el amor, la belleza y las relaciones.",
       "Sábado": "Regido por Saturno. Un día para la disciplina, la responsabilidad y la estructura."
     },
-       
     "elementDescription": {
       "Fuego": "Los signos de fuego son apasionados, enérgicos y buscan la acción.",
       "Tierra": "Los signos de tierra son prácticos, estables y buscan la seguridad.",
       "Aire": "Los signos de aire son intelectuales, comunicativos y buscan nuevas ideas.",
       "Agua": "Los signos de agua son emocionales, intuitivos y buscan una conexión profunda."
     },
-      "selectUser": "Selecciona un usuario para ver su carta astral y matriz del destino",
-      "lifePathNumber": "Número de Camino de Vida",
-      
-      "soulNumber": "Número del Alma",
-      "personalityNumber": "Número de Personalidad",
-      "descriptionNotAvailable": "Descripción no disponible",
-      "compatibility": "Compatibilidad",
-      "compatibilityScore": "Puntuación de Compatibilidad",
-      "compatibilityLevel": "Nivel de Compatibilidad",
-      "mostCompatible": "Signos Más Compatibles",
-      "leastCompatible": "Signos Menos Compatibles",
-      "challengingCompatibility": "Compatibilidad Desafiante",
-      "bestCompatibility": "Mejor Compatibilidad"
+    "selectUser": "Selecciona un usuario para ver su carta astral y matriz del destino",
+    "lifePathNumber": "Número de Camino de Vida",
+    "soulNumber": "Número del Alma",
+    "personalityNumber": "Número de Personalidad",
+    "descriptionNotAvailable": "Descripción no disponible",
+    "compatibility": "Compatibilidad",
+    "compatibilityScore": "Puntuación de Compatibilidad",
+    "compatibilityLevel": "Nivel de Compatibilidad",
+    "mostCompatible": "Signos Más Compatibles",
+    "leastCompatible": "Signos Menos Compatibles",
+    "challengingCompatibility": "Compatibilidad Desafiante",
+    "bestCompatibility": "Mejor Compatibilidad",
+    "genderEnergy": "Tipo de Energía",
+    "genderEnergyDescription": {
+      "Activa": "Tiendes a ser proactivo, iniciador y orientado a la acción en tu enfoque de la vida.",
+      "Pasiva": "Tu fuerza radica en la receptividad, la reflexión y la capacidad de respuesta a las situaciones.",
+      "Dual": "Posees una combinación única de energías activas y pasivas, adaptándote a diferentes situaciones.",
+      "Neutra": "Tu energía trasciende las categorías tradicionales, manifestándose de manera única y personal."
+    },
+    "generationalPathsAndEnergy": "Caminos Generacionales y Energía",
+    "masculinePath": "Camino Masculino",
+    "femininePath": "Camino Femenino",
+    "criticalAgesAndPinnacles": "Edades Críticas y Pináculos",
+    "criticalAges": "Edades Críticas",
+    "pinnacle": "Pináculo",
+    "personalYear": "Año Personal",
+    "personalYearNumber": "Número de Año Personal",
+    "personalityTraits": "Rasgos de Personalidad",
+    "strengths": "Fortalezas",
+    "weaknesses": "Debilidades",
+    "idealCareer": "Carrera Ideal",
+    "lifeChallenges": "Desafíos de Vida",
+    "expressionNumber": "Número de Expresión",
+    "realizationNumber": "Número de Realización"
   }
 }

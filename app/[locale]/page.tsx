@@ -28,26 +28,6 @@ export interface Birthday {
 const birthdays: Birthday[] = [
   { 
     id: '1', 
-    name: 'Leonel Ngoya', 
-    date: 'Jan 12', 
-    birthYear: 2003, 
-    gender: 'male', 
-    age: 20, 
-    birthTime: '14:30', 
-    birthPlace: 'Buenos Aires, Argentina' 
-  },
-  { 
-    id: '2', 
-    name: 'Xavier Vidal', 
-    date: 'Nov 3', 
-    birthYear: 1999, 
-    gender: 'male', 
-    age: 50, 
-    birthTime: '09:15', 
-    birthPlace: 'Madrid, España' 
-  },
-  { 
-    id: '3', 
     name: 'Mazi', 
     date: 'Nov 23', 
     birthYear: 1998, 
@@ -56,19 +36,9 @@ const birthdays: Birthday[] = [
     birthTime: '00:00', 
     birthPlace: 'Entre Ríos, Argentina' 
   },
-  { 
-    id: '4', 
-    name: 'Gina Lemoine', 
-    date: 'Mar 29', 
-    birthYear: 2002, 
-    gender: 'female', 
-    age: 21, 
-    birthTime: '04:10', 
-    birthPlace: 'Lima, Perú' 
-  },
   // Nuevos cumpleaños
   { 
-    id: '5', 
+    id: '2', 
     name: 'AzuzaCooper', 
     date: 'Jul 16', 
     birthYear: 1999, 
@@ -78,7 +48,7 @@ const birthdays: Birthday[] = [
     birthPlace: 'Buenos Aires, Argentina' 
   },
   { 
-    id: '6', 
+    id: '3', 
     name: 'Izang', 
     date: 'Nov 5', 
     birthYear: 2003, 
@@ -87,39 +57,9 @@ const birthdays: Birthday[] = [
     birthTime: '20:03', 
     birthPlace: 'Buenos Aires, Argentina' 
   },
-  { 
-    id: '7', 
-    name: 'Pacheco', 
-    date: 'Dec 9', 
-    birthYear: 1998, 
-    gender: 'male', 
-    age: 25, 
-    birthTime: '15:25', 
-    birthPlace: 'Buenos Aires, Argentina' 
-  },
-  { 
-    id: '8', 
-    name: 'Manuel Rojas', 
-    date: 'Aug 8', 
-    birthYear: 2000, 
-    gender: 'male', 
-    age: 24, 
-    birthTime: '16:30', 
-    birthPlace: 'Santiago, Chile' 
-  },
-  { 
-    id: '9', 
-    name: 'Fernando Díaz', 
-    date: 'Sep 1', 
-    birthYear: 1997, 
-    gender: 'male', 
-    age: 27, 
-    birthTime: '10:00', 
-    birthPlace: 'San Juan, Puerto Rico' 
-  },
   // Octubre
   { 
-    id: '10', 
+    id: '5', 
     name: 'Domizo', 
     date: 'May 7', 
     birthYear: 2001, 
@@ -129,17 +69,7 @@ const birthdays: Birthday[] = [
     birthPlace: 'Salta, Argentina' 
   },
   { 
-    id: '11', 
-    name: 'Pedro Sánchez', 
-    date: 'Oct 15', 
-    birthYear: 1996, 
-    gender: 'male', 
-    age: 28, 
-    birthTime: '07:50', 
-    birthPlace: 'Sevilla, España' 
-  },
-  { 
-    id: '12', 
+    id: '6', 
     name: 'Aldana Skvor', 
     date: 'Oct 11', 
     birthYear: 2000, 
@@ -149,8 +79,8 @@ const birthdays: Birthday[] = [
     birthPlace: 'Buenos Aires, Argentina' 
   },
   { 
-    id: '13', 
-    name: 'Jaz Barcos', 
+    id: '7', 
+    name: 'Jaz', 
     date: 'Oct 19', 
     birthYear: 2000, 
     gender: 'female', 
@@ -159,8 +89,8 @@ const birthdays: Birthday[] = [
     birthPlace: 'Buenos Aires, Argentina' 
   },
   { 
-    id: '14', 
-    name: 'Ian Pontorno', 
+    id: '8', 
+    name: 'Ian', 
     date: 'May 26', 
     birthYear: 1999, 
     gender: 'male', 
@@ -169,7 +99,17 @@ const birthdays: Birthday[] = [
     birthPlace: 'Buenos Aires, Argentina' 
   },
   { 
-    id: '15', 
+    id: '9', 
+    name: 'Andrea', 
+    date: 'Oct 9', 
+    birthYear: 1998, 
+    gender: 'female', 
+    age: 25, 
+    birthTime: '14:08', 
+    birthPlace: 'Buenos Aires, Argentina' 
+  },
+  { 
+    id: '10', 
     name: 'Lionel Messi', 
     date: 'Jun 24', 
     birthYear: 1987, 
@@ -179,7 +119,7 @@ const birthdays: Birthday[] = [
     birthPlace: 'Rosario, Argentina' 
   },
   { 
-    id: '16', 
+    id: '11', 
     name: 'Cristiano Ronaldo', 
     date: 'Feb 5', 
     birthYear: 1985, 
@@ -188,117 +128,6 @@ const birthdays: Birthday[] = [
     birthTime: '18:30', 
     birthPlace: 'Funchal, Madeira, Portugal' 
   },
-  { 
-    id: '17', 
-    name: 'Sergio Ramos', 
-    date: 'Mar 30', 
-    birthYear: 1986, 
-    gender: 'male', 
-    age: 37, 
-    birthTime: '10:30', 
-    birthPlace: 'Camas, España' 
-  },
-  { 
-    id: '18', 
-    name: 'Neymar Jr.', 
-    date: 'Feb 5', 
-    birthYear: 1992, 
-    gender: 'male', 
-    age: 32, 
-    birthTime: '09:00', 
-    birthPlace: 'Mogi das Cruzes, Brasil' 
-  },
-  { 
-    id: '19', 
-    name: 'Kylian Mbappé', 
-    date: 'Dec 20', 
-    birthYear: 1998, 
-    gender: 'male', 
-    age: 25, 
-    birthTime: '10:00', 
-    birthPlace: 'Bondy, Francia' 
-  },
-  { 
-    id: '20', 
-    name: 'Zlatan Ibrahimović', 
-    date: 'Oct 3', 
-    birthYear: 1981, 
-    gender: 'male', 
-    age: 42, 
-    birthTime: '00:00', 
-    birthPlace: 'Malmö, Suecia' 
-  },
-  { 
-    id: '21', 
-    name: 'Andrés Iniesta', 
-    date: 'May 11', 
-    birthYear: 1984, 
-    gender: 'male', 
-    age: 40, 
-    birthTime: '20:00', 
-    birthPlace: 'Fuentealbilla, España' 
-  },
-  { 
-    id: '22', 
-    name: 'LeBron James', 
-    date: 'Dec 30', 
-    birthYear: 1984, 
-    gender: 'male', 
-    age: 39, 
-    birthTime: '18:00', 
-    birthPlace: 'Akron, Ohio, EE. UU.' 
-  },
-  { 
-    id: '23', 
-    name: 'Stephen Curry', 
-    date: 'Mar 14', 
-    birthYear: 1988, 
-    gender: 'male', 
-    age: 36, 
-    birthTime: '01:30', 
-    birthPlace: 'Akron, Ohio, EE. UU.' 
-  },
-  { 
-    id: '24', 
-    name: 'Kevin Durant', 
-    date: 'Sept 29', 
-    birthYear: 1988, 
-    gender: 'male', 
-    age: 36, 
-    birthTime: '10:00', 
-    birthPlace: 'Washington, D.C., EE. UU.' 
-  },
-  { 
-    id: '25', 
-    name: 'Gareth Bale', 
-    date: 'Jul 16', 
-    birthYear: 1989, 
-    gender: 'male', 
-    age: 34, 
-    birthTime: '00:00', 
-    birthPlace: 'Cardiff, Gales' 
-},
-{ 
-  id: '26', 
-  name: 'Klay Thompson', 
-  date: 'Feb 8', 
-  birthYear: 1990, 
-  gender: 'male', 
-  age: 34, 
-  birthTime: '00:00', 
-  birthPlace: 'Los Ángeles, California, EE. UU.' 
-},
-{
-  id: '27',
-  name: 'Roberto Carlos',
-  date: 'Apr 10',
-  birthYear: 1973,
-  gender: 'male',
-  age: 51,
-  birthTime: '00:00',
-  birthPlace: 'Rio de Janeiro, Brasil'
-}
-  // Agrega más datos según sea necesario...
 ]
 
 export default function Page({ params: { locale } }: { params: { locale: string } }) {
