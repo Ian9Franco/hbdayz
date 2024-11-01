@@ -101,7 +101,7 @@ const birthdays: Birthday[] = [
   { 
     id: '9', 
     name: 'Andrea', 
-    date: 'Oct 9', 
+    date: 'Oct 4', 
     birthYear: 1998, 
     gender: 'female', 
     age: 25, 
